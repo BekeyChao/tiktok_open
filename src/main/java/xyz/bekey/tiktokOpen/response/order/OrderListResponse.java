@@ -12,8 +12,9 @@ public class OrderListResponse extends TiktokOpenResponse<PageList<Order>> {
 
     @JSONField(serialize = false,deserialize = false)
     public List<Order> getContents() {
-        if (getData() != null)
+        if (getData() != null && getData().getList() != null) {
             return getData().getList();
+        }
         return new ArrayList<>();
     }
 

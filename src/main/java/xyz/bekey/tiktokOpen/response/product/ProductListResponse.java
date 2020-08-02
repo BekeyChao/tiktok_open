@@ -12,7 +12,7 @@ public class ProductListResponse extends TiktokOpenResponse<PageData<Product>> {
 
     @JSONField(serialize = false,deserialize = false)
     public List<Product> getContents() {
-        if (getData() != null)
+        if (getData() != null && getData().getData() != null)
             return getData().getData();
         return new ArrayList<>();
     }

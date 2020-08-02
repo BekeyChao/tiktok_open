@@ -31,8 +31,14 @@ public class OrderListParameters {
     // 每页订单数（默认为10，最大100）
     private String size;
 
+    private String type;
+
     public void setOrder_status(OrderStatus order_status) {
         this.order_status = order_status.toString();
+    }
+
+    public void setOrder_status(int order_status) {
+        this.order_status = String.valueOf(order_status);
     }
 
     public void setStart_time(LocalDateTime start_time) {
@@ -62,6 +68,14 @@ public class OrderListParameters {
     public void setPage(Integer page) {
         AssertUtils.isTrue(page >= 0, "page > 0");
         this.page = page.toString();
+    }
+
+    public void setType(int type) {
+        this.type = type + "";
+    }
+
+    public String getType() {
+        return this.type;
     }
 
     public void setSize(Integer size) {

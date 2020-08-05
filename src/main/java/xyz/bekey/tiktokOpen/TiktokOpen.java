@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.bekey.ErrNoHandleConfig;
 import xyz.bekey.tiktokOpen.domain.AccessToken;
-import xyz.bekey.tiktokOpen.exceptions.FailToRequestException;
+import xyz.bekey.tiktokOpen.exceptions.TiktokRequestException;
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
 import xyz.bekey.tiktokOpen.response.TiktokOpenResponse;
 import xyz.bekey.tiktokOpen.utils.AssertUtils;
@@ -37,7 +37,7 @@ public class TiktokOpen {
         dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     }
 
-    public <S ,T extends TiktokOpenResponse<?>> T getTiktokResponse(TiktokOpenRequest<S ,T> request, String accessToken) {
+    public <S, T extends TiktokOpenResponse<?>> T getTiktokResponse(TiktokOpenRequest<S, T> request, String accessToken) {
 
         String jsonStr = JSON.toJSONString(request.getData(), SerializerFeature.MapSortField, SerializerFeature.WriteEnumUsingToString);
         // 不可包含特殊字符 & = ｜ ^ +
@@ -48,7 +48,7 @@ public class TiktokOpen {
         treeMap.put("param_json",
                 jsonStr);
         if (logger.isInfoEnabled()) {
-            logger.info("抖音开发平台请求 {} {}",request.getMethod(), jsonStr);
+            logger.info("抖音开发平台请求 {} {}", request.getMethod(), jsonStr);
         }
 
         treeMap.put("method", request.getMethod());
@@ -63,17 +63,17 @@ public class TiktokOpen {
         String url = tiktokOpenConfig.getHost() + request.getContentPath();
         // doGet 不处理 urlEncoder 所以要准备避免特殊字符
         // 修改为 doPost 方法，应该可以避免特殊字符影响
-        String response = httpUtils.doPost(url , treeMap);
+        String response = httpUtils.doPost(url, treeMap);
 
         /**
          * 请求异常则 response 会抛出异常 而不会是null
          */
         if (response != null) {
+            if (logger.isInfoEnabled()) {
+                logger.info("抖音开发平台响应 {}", response);
+            }
             try {
                 T res = JSON.parseObject(response, request.getResponseType());
-                if (logger.isInfoEnabled()) {
-                    logger.info("抖音开发平台响应 {}", JSON.toJSONString(res));
-                }
                 if (res.getErr_no() == 30006) {
                     // 用户取消授权
                     if (errNoHandleConfig.getAuthorize30006Handle() != null) {
@@ -85,7 +85,7 @@ public class TiktokOpen {
                 logger.error("抖音响应解析失败 msg:{}", response);
 //                return request.getResponseType().cast(new ErrorResponse());
 //                T tiktokOpenResponse = new TiktokOpenResponse();
-                throw new FailToRequestException(response, e);
+                throw new TiktokRequestException(-1, "抖音响应解析失败 str:" + response);
             }
         }
 
@@ -94,6 +94,7 @@ public class TiktokOpen {
 
     /**
      * 抖音签名方法
+     *
      * @param sortedMap
      * @return
      */
@@ -137,6 +138,7 @@ public class TiktokOpen {
 
     /**
      * 检查是否有特殊字符
+     *
      * @return
      */
     public static boolean hasSpecialChar(String content) {

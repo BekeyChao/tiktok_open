@@ -4,7 +4,7 @@ package xyz.bekey.tiktokOpen.domain.enums;
  * 预售
  */
 public enum PresellType {
-    Full(1), Not(0);
+    Not(0), Full(1);
 
     private int code;
 

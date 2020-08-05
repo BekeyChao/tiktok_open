@@ -38,6 +38,7 @@ public enum OrderStatus {
     Money_Success_Transport(38, "退款中-线下退款成功（已发货时）"),
     Money_Success(39, "退款中-退款成功（已发货时）");
 
+//    ALL_Done(255, "");
     private int code;
 
     OrderStatus(int code, String desc) {

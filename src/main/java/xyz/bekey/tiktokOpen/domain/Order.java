@@ -1,8 +1,5 @@
 package xyz.bekey.tiktokOpen.domain;
 
-import xyz.bekey.tiktokOpen.domain.enums.BusynessType;
-import xyz.bekey.tiktokOpen.domain.enums.OrderStatus;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -88,7 +85,14 @@ public class Order {
 
     // 没有例子
 //    private Integer shop_full_campaign;
+    /**
+     * 父订单总金额 (单位: 分) 即用户实际支付金额, 不包含运费
+     */
+    private Integer order_total_amount;
 
+    /**
+     * 该子订单总金额 (单位: 分)
+     */
     private Integer total_amount;
 
     // 是否评价 (1:已评价)
@@ -97,14 +101,22 @@ public class Order {
     // 催单次数
     private Integer urge_cnt;
     // 订单APP渠道
-    private BusynessType b_type;
+    private Integer b_type;
     // 订单来源，如下所示
     private Integer c_type;
 
+    /**
+     * 暂时为空
+     */
     private String user_name;
 
     // 佣金比例
     private BigDecimal cos_ratio;
+
+    /**
+     * child_num 总会与child.size()一致，所以没有什么意义
+     */
+    private Integer child_num;
 
     public String getOrder_id() {
         return order_id;
@@ -426,11 +438,11 @@ public class Order {
         this.urge_cnt = urge_cnt;
     }
 
-    public BusynessType getB_type() {
+    public Integer getB_type() {
         return b_type;
     }
 
-    public void setB_type(BusynessType b_type) {
+    public void setB_type(Integer b_type) {
         this.b_type = b_type;
     }
 
@@ -472,5 +484,21 @@ public class Order {
 
     public void setOut_sku_id(Long out_sku_id) {
         this.out_sku_id = out_sku_id;
+    }
+
+    public Integer getChild_num() {
+        return child_num;
+    }
+
+    public void setChild_num(Integer child_num) {
+        this.child_num = child_num;
+    }
+
+    public Integer getOrder_total_amount() {
+        return order_total_amount;
+    }
+
+    public void setOrder_total_amount(Integer order_total_amount) {
+        this.order_total_amount = order_total_amount;
     }
 }

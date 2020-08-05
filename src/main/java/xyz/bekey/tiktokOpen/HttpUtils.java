@@ -8,15 +8,11 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import xyz.bekey.tiktokOpen.exceptions.FailToRequestException;
+import xyz.bekey.tiktokOpen.exceptions.TiktokRequestException;
 import xyz.bekey.tiktokOpen.utils.CollectionUtils;
 
 import java.io.IOException;
@@ -32,8 +28,6 @@ import java.util.Map;
  * 基于 org.apache.httpcomponents
  */
 class HttpUtils {
-
-//    private Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
     private TiktokOpenConfig tiktokShopConfig;
 
@@ -76,7 +70,7 @@ class HttpUtils {
             URI uri = new URI(Url.getProtocol(), Url.getHost(), Url.getPath(), Url.getQuery(), null);
             httpGet = new HttpGet(uri);
         } catch (Exception e) {
-            throw new FailToRequestException("请求创建异常", e);
+            throw new TiktokRequestException(-1,"请求创建异常", e);
         }
 
         httpGet.addHeader("Content-Type", "text/html;charset=utf-8");
@@ -112,17 +106,17 @@ class HttpUtils {
                 }
 
             }  catch (IOException e) {
-                throw new FailToRequestException("请求链接异常", e);
+                throw new TiktokRequestException(-1, "请求链接异常", e);
             }
             if (response == null)
-                throw new FailToRequestException("请求响应异常");
+                throw new TiktokRequestException(-1,"请求响应异常");
             HttpEntity entity = response.getEntity();
             try {
                 String res = EntityUtils.toString(entity, "UTF-8");
 //                System.out.println(res);
                 return res;
             }  catch (IOException e) {
-                throw new FailToRequestException("响应读取异常", e);
+                throw new TiktokRequestException(-1, "响应读取异常", e);
             }
         } finally {
             request.abort();

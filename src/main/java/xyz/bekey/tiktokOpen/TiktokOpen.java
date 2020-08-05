@@ -70,7 +70,11 @@ public class TiktokOpen {
          */
         if (response != null) {
             if (logger.isInfoEnabled()) {
-                logger.info("抖音开发平台响应 {}", response);
+                String method = request.getMethod();
+                if (!"order.list".equals(method) && !"refund.orderList".equals(method)) {
+                    // 订单数据过长  不适合打印
+                    logger.info("抖音开发平台响应 {}", response);
+                }
             }
             try {
                 T res = JSON.parseObject(response, request.getResponseType());

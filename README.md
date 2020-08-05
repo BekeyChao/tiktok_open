@@ -1,4 +1,11 @@
 ## 抖音开放平台(v2) Java SDK
+
+### 项目说明
+因为项目为根据公司业务进度逐步开发，并未完全实现所有接口，并且未为每个接口写下测试用例。
+虽然大部分接口已经经历了上线实测，不过依然建议您在使用时做好充分测试！
+如果您使用了该SDK，希望您可以留言告知！谢谢  
+
+https://my.oschina.net/u/3491123/blog/4443235
 ### 快速开始
 ```bash
 
@@ -17,7 +24,7 @@ mvn install
 <dependency>
     <groupId>xyz.bekey</groupId>
     <artifactId>tiktokOpen</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.8</version>
 </dependency>
 ```
 
@@ -69,7 +76,3 @@ public void productGetCategoryTest() {
     System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
 }
 ```
-
-### 项目进度
-因为项目为根据公司业务进度逐步开发，并未完全实现所有接口，并且未为每个接口写下测试用例。
-不过大部分接口已经经历了上线实测，不过依然建议您在使用时做好充分测试！

@@ -13,6 +13,11 @@ public class SpecAddParameters {
 
     private String specs;
 
+    /**
+     * 读取 一级规格 spec.getSpecs()
+     * 读取 二级规格 child.getValues()
+     * @param spec
+     */
     public SpecAddParameters(Spec spec) {
         this.name = spec.getName();
         AssertUtils.isTrue(CollectionUtils.isPresent(spec.getSpecs()), "规格不可为空");

@@ -5,10 +5,12 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.junit.Before;
 import org.junit.Test;
 import xyz.bekey.tiktokOpen.domain.enums.OrderStatus;
+import xyz.bekey.tiktokOpen.request.order.LogisticsCompanyListRequest;
 import xyz.bekey.tiktokOpen.request.order.OrderDetailRequest;
 import xyz.bekey.tiktokOpen.request.order.OrderListRequest;
 import xyz.bekey.tiktokOpen.request.parameters.OrderIdParameter;
 import xyz.bekey.tiktokOpen.request.parameters.OrderListParameters;
+import xyz.bekey.tiktokOpen.response.order.LogisticsCompanyListResponse;
 import xyz.bekey.tiktokOpen.response.order.OrderDetailResponse;
 import xyz.bekey.tiktokOpen.response.order.OrderListResponse;
 
@@ -28,7 +30,7 @@ public class OrderTests {
         config.setAppKey(AppInfo.appKey);
         TiktokOpen open = new TiktokOpen(config);
         this.client = open;
-        this.accessToken = "token";
+        this.accessToken = AppInfo.accessToken;
     }
 
     @Test
@@ -54,4 +56,13 @@ public class OrderTests {
         System.out.println(JSON.toJSONString(res, SerializerFeature.PrettyFormat));
     }
 
+    @Test
+    public void logisticsCompanyList() {
+        //
+        LogisticsCompanyListRequest request = new LogisticsCompanyListRequest();
+        LogisticsCompanyListResponse response = client.getTiktokResponse(request, accessToken);
+
+        System.out.println(JSON.toJSONString(response.getData()));
+        System.out.println(JSON.toJSONString(response));
+    }
 }

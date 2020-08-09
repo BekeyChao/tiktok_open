@@ -78,7 +78,7 @@ public class TiktokOpen {
             }
             try {
                 T res = JSON.parseObject(response, request.getResponseType());
-                if (res.getErr_no() == 30006) {
+                if (res.getErr_no() == 30006 || res.getErr_no() == 11) {
                     // 用户取消授权
                     if (errNoHandleConfig.getAuthorize30006Handle() != null) {
                         errNoHandleConfig.getAuthorize30006Handle().accept(accessToken);

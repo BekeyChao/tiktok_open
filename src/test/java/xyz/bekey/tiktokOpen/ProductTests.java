@@ -24,7 +24,7 @@ public class ProductTests {
         config.setAppKey(AppInfo.appKey);
         TiktokOpen open = new TiktokOpen(config);
         this.client = open;
-        this.accessToken = "token";
+        this.accessToken = AppInfo.accessToken;
     }
 
     @Test

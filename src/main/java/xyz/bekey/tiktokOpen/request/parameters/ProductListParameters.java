@@ -41,7 +41,7 @@ public class ProductListParameters {
         return Objects.toString(status, null);
     }
 
-    public Integer getCheck_status() {
-        return check_status;
+    public String getCheck_status() {
+        return Objects.toString(check_status, null);
     }
 }

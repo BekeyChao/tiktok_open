@@ -1,7 +1,5 @@
 package xyz.bekey.tiktokOpen.request.parameters;
 
-import xyz.bekey.tiktokOpen.domain.enums.CheckStatus;
-
 import java.util.Objects;
 
 public class ProductListParameters {
@@ -17,9 +15,9 @@ public class ProductListParameters {
     /**
      * 可选 审核状态
      */
-    private CheckStatus check_status;
+    private Integer check_status;
 
-    public ProductListParameters(Integer page, Integer size, Integer status, CheckStatus check_status) {
+    public ProductListParameters(Integer page, Integer size, Integer status, Integer check_status) {
         this.page = page;
         this.size = size;
         this.status = status;
@@ -43,7 +41,7 @@ public class ProductListParameters {
         return Objects.toString(status, null);
     }
 
-    public CheckStatus getCheck_status() {
+    public Integer getCheck_status() {
         return check_status;
     }
 }

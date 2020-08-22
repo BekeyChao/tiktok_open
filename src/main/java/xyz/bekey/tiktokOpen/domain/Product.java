@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class Product {
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime create_time;
+//    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private String create_time;
 
     private String img;
 
@@ -28,8 +28,8 @@ public class Product {
     @JSONField(serialize = false, deserialize = false)
     private String product_id_str;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime update_time;
+//    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private String update_time;
 
     private Long open_user_id;
 
@@ -370,11 +370,11 @@ public class Product {
         this.product_id = product_id;
     }
 
-    public LocalDateTime getCreate_time() {
+    public String getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(LocalDateTime create_time) {
+    public void setCreate_time(String create_time) {
         this.create_time = create_time;
     }
 
@@ -410,11 +410,11 @@ public class Product {
         this.product_id_str = product_id_str;
     }
 
-    public LocalDateTime getUpdate_time() {
+    public String getUpdate_time() {
         return update_time;
     }
 
-    public void setUpdate_time(LocalDateTime update_time) {
+    public void setUpdate_time(String update_time) {
         this.update_time = update_time;
     }
 

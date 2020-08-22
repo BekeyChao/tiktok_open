@@ -4,10 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xyz.bekey.tiktokOpen.request.parameters.CidParameter;
+import xyz.bekey.tiktokOpen.request.parameters.ProductIdParameter;
+import xyz.bekey.tiktokOpen.request.product.ProductDetailRequest;
 import xyz.bekey.tiktokOpen.request.product.ProductGetGoodsCategoryRequest;
+import xyz.bekey.tiktokOpen.response.product.ProductDetailResponse;
 import xyz.bekey.tiktokOpen.response.product.ProductGetGoodsCategoryResponse;
 
 public class ProductTests {
@@ -34,6 +35,14 @@ public class ProductTests {
         ProductGetGoodsCategoryResponse response = client.getTiktokResponse(request, accessToken);
         System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
 
+    }
+
+    @Test
+    public void productDetail() {
+        ProductIdParameter parameter = new ProductIdParameter(3431551043593467001L, null);
+        ProductDetailRequest request = new ProductDetailRequest(parameter);
+        ProductDetailResponse response = client.getTiktokResponse(request, accessToken);
+        System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
     }
 
     @Test

@@ -73,11 +73,6 @@ public class ProductEditParameters {
     private String product_format;
 
     /**
-     * 商品卖点 可选
-     */
-    private String usp;
-
-    /**
      * 可选
      */
     private PresellType presell_type;
@@ -88,12 +83,17 @@ public class ProductEditParameters {
     private String presell_delay;
 
     /**
+     * "1"：编辑后立即提交审核；"2"：编辑后仅保存，不提审
+     */
+    private String commit;
+
+    /**
      * 预售结束时间，格式2020-02-21 18:54:27，最多支持设置距离当前30天 可选
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime presell_end_time;
 
-    public ProductEditParameters(Product product) {
+    public ProductEditParameters(Product product, int commit) {
         Long productId = product.getProduct_id();
         Long outProductId = product.getOut_product_id();
         AssertUtils.isTrue( (productId != null && outProductId == null)
@@ -132,11 +132,11 @@ public class ProductEditParameters {
             this.product_format = Join.kvJoin(product.getProduct_format());
         }
 
-        this.usp = product.getUsp();
         this.presell_type = product.getPresell_type();
         this.presell_delay = Objects.toString(product.getPresell_delay(), null);
         this.presell_end_time = product.getPresell_end_time();
 
+        this.commit = commit + "";
     }
 
     public String getProduct_id() {
@@ -187,8 +187,8 @@ public class ProductEditParameters {
         return product_format;
     }
 
-    public String getUsp() {
-        return usp;
+    public String getCommit() {
+        return commit;
     }
 
     public PresellType getPresell_type() {

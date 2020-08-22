@@ -1,13 +1,13 @@
 package xyz.bekey.tiktokOpen.request.sku;
 
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
-import xyz.bekey.tiktokOpen.request.parameters.ProductIdParameter;
+import xyz.bekey.tiktokOpen.request.parameters.ProductParameter;
 import xyz.bekey.tiktokOpen.response.sku.SkuListResponse;
 
-public class SkuListRequest extends TiktokOpenRequest<ProductIdParameter, SkuListResponse> {
+public class SkuListRequest extends TiktokOpenRequest<ProductParameter, SkuListResponse> {
 
 
-    public SkuListRequest(ProductIdParameter parameter) {
+    public SkuListRequest(ProductParameter parameter) {
         super(parameter);
     }
 

@@ -12,8 +12,6 @@ public class SkuAddAllParameters {
      */
     private String product_id;
 
-    private String out_product_id;
-
     private String spec_id;
 
     private String spec_detail_ids;
@@ -28,11 +26,11 @@ public class SkuAddAllParameters {
 
     private String code;
 
-    public SkuAddAllParameters(ProductIdParameter productId, List<Sku> skus) {
+    public SkuAddAllParameters(Long productId, List<Sku> skus) {
 //        this.product_id = product_id.toString();
 //        this.spec_id = spec_id.toString();
-        this.out_product_id = productId.getOut_product_id();
-        this.product_id = productId.getProduct_id();
+//        this.out_product_id = productId.getOut_product_id();
+        this.product_id = productId.toString();
 
         StringBuilder spec_ids = new StringBuilder();
         StringBuilder spec_detail_ids = new StringBuilder();
@@ -76,10 +74,6 @@ public class SkuAddAllParameters {
 
     public String getSpec_id() {
         return spec_id;
-    }
-
-    public String getOut_product_id(){
-        return out_product_id;
     }
 
     public String getSpec_detail_ids() {

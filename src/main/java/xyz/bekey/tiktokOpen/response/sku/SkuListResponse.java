@@ -3,5 +3,7 @@ package xyz.bekey.tiktokOpen.response.sku;
 import xyz.bekey.tiktokOpen.domain.Sku;
 import xyz.bekey.tiktokOpen.response.TiktokOpenResponse;
 
-public class SkuListResponse extends TiktokOpenResponse<Sku> {
+import java.util.List;
+
+public class SkuListResponse extends TiktokOpenResponse<List<Sku>> {
 }

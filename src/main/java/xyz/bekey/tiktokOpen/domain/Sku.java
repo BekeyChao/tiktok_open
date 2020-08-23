@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Sku {
 
+    private Long id;
+
     private Long product_id;
 
     private Long out_product_id;
@@ -102,5 +104,13 @@ public class Sku {
 
     public void setSpec_id(Long spec_id) {
         this.spec_id = spec_id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

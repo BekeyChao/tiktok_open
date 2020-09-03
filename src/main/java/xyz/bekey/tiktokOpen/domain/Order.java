@@ -71,6 +71,11 @@ public class Order {
 
     private Integer post_amount;
 
+    // 达人ID
+    private Long author_id;
+
+    private AllianceInfo alliance_info;
+
     private Integer coupon_amount;
 
     private Integer shop_coupon_amount;
@@ -500,5 +505,21 @@ public class Order {
 
     public void setOrder_total_amount(Integer order_total_amount) {
         this.order_total_amount = order_total_amount;
+    }
+
+    public Long getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(Long author_id) {
+        this.author_id = author_id;
+    }
+
+    public AllianceInfo getAlliance_info() {
+        return alliance_info;
+    }
+
+    public void setAlliance_info(AllianceInfo alliance_info) {
+        this.alliance_info = alliance_info;
     }
 }

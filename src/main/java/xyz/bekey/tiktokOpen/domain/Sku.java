@@ -26,6 +26,13 @@ public class Sku {
 
     private String code;
 
+    private long spec_detail_id1;   //第一级子规格ID（最多三级）
+    private long spec_detail_id2;   //第二级子规格ID
+    private long spec_detail_id3;   //第三级子规格ID（最多三级）
+    private String spec_detail_name1;   //第一级子规格名称，比如：黑色
+    private String spec_detail_name2;   //第二级子规格名称，比如：大
+    private String spec_detail_name3;
+
     public Long getSku_id() {
         return sku_id;
     }
@@ -112,5 +119,53 @@ public class Sku {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getSpec_detail_id1() {
+        return spec_detail_id1;
+    }
+
+    public void setSpec_detail_id1(long spec_detail_id1) {
+        this.spec_detail_id1 = spec_detail_id1;
+    }
+
+    public long getSpec_detail_id2() {
+        return spec_detail_id2;
+    }
+
+    public void setSpec_detail_id2(long spec_detail_id2) {
+        this.spec_detail_id2 = spec_detail_id2;
+    }
+
+    public long getSpec_detail_id3() {
+        return spec_detail_id3;
+    }
+
+    public void setSpec_detail_id3(long spec_detail_id3) {
+        this.spec_detail_id3 = spec_detail_id3;
+    }
+
+    public String getSpec_detail_name1() {
+        return spec_detail_name1;
+    }
+
+    public void setSpec_detail_name1(String spec_detail_name1) {
+        this.spec_detail_name1 = spec_detail_name1;
+    }
+
+    public String getSpec_detail_name2() {
+        return spec_detail_name2;
+    }
+
+    public void setSpec_detail_name2(String spec_detail_name2) {
+        this.spec_detail_name2 = spec_detail_name2;
+    }
+
+    public String getSpec_detail_name3() {
+        return spec_detail_name3;
+    }
+
+    public void setSpec_detail_name3(String spec_detail_name3) {
+        this.spec_detail_name3 = spec_detail_name3;
     }
 }

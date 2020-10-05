@@ -69,13 +69,13 @@ public class TiktokOpen {
          * 请求异常则 response 会抛出异常 而不会是null
          */
         if (response != null) {
-            if (logger.isInfoEnabled()) {
-                String method = request.getMethod();
-                if (!"order.list".equals(method) && !"refund.orderList".equals(method)) {
-                    // 订单数据过长  不适合打印
-                    logger.info("抖音开发平台响应 {}", response);
-                }
+
+            if (logger.isInfoEnabled() && request.infoEnabled()) {
+                logger.info("抖音开发平台响应 {}", response);
+            } else if (logger.isDebugEnabled() && request.debugEnabled()) {
+                logger.debug("抖音开发平台响应 {}", response);
             }
+
             try {
                 T res = JSON.parseObject(response, request.getResponseType());
                 if (res.getErr_no() == 30006 || res.getErr_no() == 11) {

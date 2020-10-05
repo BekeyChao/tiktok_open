@@ -53,4 +53,13 @@ public abstract class TiktokOpenRequest<P ,T extends TiktokOpenResponse<?>> {
         return "2";
     }
 
+    // 是否输出 log.info
+    public boolean infoEnabled() {
+        return true;
+    }
+
+    // 是否输出 log.debug
+    public boolean debugEnabled() {
+        return true;
+    }
 }

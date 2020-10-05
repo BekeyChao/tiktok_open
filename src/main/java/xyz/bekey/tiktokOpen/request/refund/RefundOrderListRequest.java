@@ -19,4 +19,11 @@ public class RefundOrderListRequest extends TiktokOpenRequest<OrderListParameter
     public String getContentPath() {
         return "/refund/orderList";
     }
+
+    // 不输出 info 太长
+    @Override
+    public boolean infoEnabled() {
+        return false;
+    }
+
 }

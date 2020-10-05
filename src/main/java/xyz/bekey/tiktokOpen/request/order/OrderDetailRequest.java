@@ -19,4 +19,10 @@ public class OrderDetailRequest extends TiktokOpenRequest<OrderIdParameter, Orde
     public String getContentPath() {
         return "/order/detail";
     }
+
+    // 长年累月数据量很大 根据需求调整
+    @Override
+    public boolean infoEnabled() {
+        return false;
+    }
 }

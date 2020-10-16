@@ -1,15 +1,18 @@
 package xyz.bekey.tiktokOpen;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.bekey.ErrNoHandleConfig;
 import xyz.bekey.tiktokOpen.domain.AccessToken;
+import xyz.bekey.tiktokOpen.exceptions.MsgRequestException;
 import xyz.bekey.tiktokOpen.exceptions.TiktokRequestException;
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
 import xyz.bekey.tiktokOpen.response.TiktokOpenResponse;
+import xyz.bekey.tiktokOpen.utils.AesDecryptUtils;
 import xyz.bekey.tiktokOpen.utils.AssertUtils;
 
 import java.time.LocalDateTime;
@@ -48,7 +51,7 @@ public class TiktokOpen {
         treeMap.put("param_json",
                 jsonStr);
         if (logger.isInfoEnabled()) {
-            logger.info("抖音开发平台请求 {} {}", request.getMethod(), jsonStr);
+            logger.info("抖音开发平台请求 {} {} {}", request.getMethod(), jsonStr, accessToken);
         }
 
         treeMap.put("method", request.getMethod());
@@ -111,6 +114,29 @@ public class TiktokOpen {
         return DigestUtils.md5Hex(sb.toString()).toLowerCase();
     }
 
+    /**
+     * 服务市场消息回调解密方法
+     * @param str
+     * @return
+     */
+    public JSONObject decrypt(String str) {
+        logger.info("服务市场推送消息:" + str);
+        JSONObject request = JSON.parseObject(str);
+        String sSrc = request.getString("msg");
+        String decrypt = AesDecryptUtils.decrypt(sSrc, tiktokOpenConfig.getAppsercet().replace("-", ""));
+        if (decrypt == null) {
+            throw new MsgRequestException("aes 解密失败");
+        }
+        int msgType = request.getInteger("msg_type");
+        return JSONObject.parseObject(decrypt);
+//        if ( msgType == 1) {
+//            // msg_type=1，msg中存储的是支付成功相关信息
+//
+//        } else if (msgType == 2) {
+//            // msg_type=2，msg中存储的是授权相关信息
+//        }
+//        throw new MsgRequestException("未支持的订购消息类型:" + str);
+    }
 
     public AccessToken getAccessToken(String code) {
         String url = tiktokOpenConfig.getHost();

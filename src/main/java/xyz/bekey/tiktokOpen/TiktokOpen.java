@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.bekey.ErrNoHandleConfig;
 import xyz.bekey.tiktokOpen.domain.AccessToken;
+import xyz.bekey.tiktokOpen.domain.MsgAuthInfo;
+import xyz.bekey.tiktokOpen.domain.MsgOrderInfo;
+import xyz.bekey.tiktokOpen.domain.TiktokMarketMessage;
 import xyz.bekey.tiktokOpen.exceptions.MsgRequestException;
 import xyz.bekey.tiktokOpen.exceptions.TiktokRequestException;
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
@@ -116,26 +119,33 @@ public class TiktokOpen {
 
     /**
      * 服务市场消息回调解密方法
-     * @param str
+     * @param sSrc 秘文
      * @return
      */
-    public JSONObject decrypt(String str) {
-        logger.info("服务市场推送消息:" + str);
-        JSONObject request = JSON.parseObject(str);
-        String sSrc = request.getString("msg");
+    public TiktokMarketMessage decrypt(String sSrc) {
         String decrypt = AesDecryptUtils.decrypt(sSrc, tiktokOpenConfig.getAppsercet().replace("-", ""));
         if (decrypt == null) {
-            throw new MsgRequestException("aes 解密失败");
+            throw new MsgRequestException("aes 解密失败:" + sSrc);
         }
-        int msgType = request.getInteger("msg_type");
-        return JSONObject.parseObject(decrypt);
-//        if ( msgType == 1) {
-//            // msg_type=1，msg中存储的是支付成功相关信息
-//
-//        } else if (msgType == 2) {
-//            // msg_type=2，msg中存储的是授权相关信息
-//        }
-//        throw new MsgRequestException("未支持的订购消息类型:" + str);
+        logger.info("服务市场消息推送：" + decrypt);
+        JSONObject json = JSONObject.parseObject(decrypt);
+        int msgType = json.getInteger("msg_type");
+        String msg = json.getString("msg");
+        TiktokMarketMessage message = new TiktokMarketMessage();
+        message.setMsgType(msgType);
+        message.setMessage(decrypt);
+        if ( msgType == 1) {
+            // msg_type=1，msg中存储的是支付成功相关信息
+            MsgOrderInfo info = JSON.parseObject(msg, MsgOrderInfo.class);
+            message.setMsgOrderInfo(info);
+        } else if (msgType == 2) {
+            // msg_type=2，msg中存储的是授权相关信息
+            MsgAuthInfo info = JSON.parseObject(msg, MsgAuthInfo.class);
+            message.setMsgAuthInfo(info);
+        } else {
+            throw new MsgRequestException("未支持的订购消息类型:" + msgType);
+        }
+        return message;
     }
 
     public AccessToken getAccessToken(String code) {

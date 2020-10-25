@@ -33,8 +33,8 @@ public class Product {
 
     private Long open_user_id;
 
-    // 是否创建过商品 0未创建 1已创建
-    private Integer is_create;
+    // 是否创建过商品 0未创建 1已创建 已废弃
+//    private Integer is_create;
 
     // 下单减库存 付款减库存
     private Integer reduce_type;
@@ -432,14 +432,6 @@ public class Product {
 
     public void setStatus(ProductStatus status) {
         this.status = status;
-    }
-
-    public Integer getIs_create() {
-        return is_create;
-    }
-
-    public void setIs_create(Integer is_create) {
-        this.is_create = is_create;
     }
 
     public List<Spec> getSpecs() {

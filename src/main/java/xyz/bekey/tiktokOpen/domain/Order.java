@@ -9,6 +9,9 @@ public class Order {
 
     private Long shop_id;
 
+    // 在抖音小程序下单时，买家的抖音小程序ID
+    private String open_id;
+
     private String pid;
 
     private List<Order> child;
@@ -50,8 +53,14 @@ public class Order {
 
     private Integer order_status;
 
-    // 订单类型 (0:普通订单, 1:预售订单)
+    private Integer final_status;
+
+    // 订单类型 订单类型 (0:普通订单，2:虚拟订单，4:电子券)
+    // (0实物，2普通虚拟，4poi核销，5三方核销，6服务市场)
     private Integer order_type;
+
+    // 订单预售类型 (1:全款预售订单)
+    private Integer pre_sale_type;
 
     private Long create_time;
 
@@ -88,8 +97,8 @@ public class Order {
 
     private List<CampaignInfo> campaign_info;
 
-    // 没有例子
-//    private Integer shop_full_campaign;
+    // 店铺满减优惠信息(shop_campaign_id：店铺满减活动ID，shop_full_amount：分摊到该子订单上的满减金额，单位：分
+    private Integer shop_full_campaign;
     /**
      * 父订单总金额 (单位: 分) 即用户实际支付金额, 不包含运费
      */
@@ -110,10 +119,22 @@ public class Order {
     // 订单来源，如下所示
     private Integer c_type;
 
-    /**
-     * 暂时为空
-     */
-    private String user_name;
+    // 订单来源类型
+    //0:未知
+    //1:app
+    //2:小程序
+    //3:h5
+    private Integer sub_b_type;
+
+    // 1	鲁班广告
+    //2	联盟
+    //4	商城
+    //8	自主经营
+    //10	线索通支付表单
+    //12	抖音门店
+    //14	抖+
+    //15	穿山甲
+    private Integer c_biz;
 
     // 佣金比例
     private BigDecimal cos_ratio;
@@ -122,6 +143,13 @@ public class Order {
      * child_num 总会与child.size()一致，所以没有什么意义
      */
     private Integer child_num;
+
+    // 仓库ID
+    private Integer warehouse_id;
+    // 仓库外部ID
+    private Integer out_warehouse_id;
+    // 供应商ID
+    private Integer warehouse_supplier;
 
     public String getOrder_id() {
         return order_id;
@@ -459,12 +487,68 @@ public class Order {
         this.c_type = c_type;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getOpen_id() {
+        return open_id;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setOpen_id(String open_id) {
+        this.open_id = open_id;
+    }
+
+    public Integer getPre_sale_type() {
+        return pre_sale_type;
+    }
+
+    public void setPre_sale_type(Integer pre_sale_type) {
+        this.pre_sale_type = pre_sale_type;
+    }
+
+    public Integer getShop_full_campaign() {
+        return shop_full_campaign;
+    }
+
+    public void setShop_full_campaign(Integer shop_full_campaign) {
+        this.shop_full_campaign = shop_full_campaign;
+    }
+
+    public Integer getSub_b_type() {
+        return sub_b_type;
+    }
+
+    public void setSub_b_type(Integer sub_b_type) {
+        this.sub_b_type = sub_b_type;
+    }
+
+    public Integer getC_biz() {
+        return c_biz;
+    }
+
+    public void setC_biz(Integer c_biz) {
+        this.c_biz = c_biz;
+    }
+
+    public Integer getWarehouse_id() {
+        return warehouse_id;
+    }
+
+    public void setWarehouse_id(Integer warehouse_id) {
+        this.warehouse_id = warehouse_id;
+    }
+
+    public Integer getOut_warehouse_id() {
+        return out_warehouse_id;
+    }
+
+    public void setOut_warehouse_id(Integer out_warehouse_id) {
+        this.out_warehouse_id = out_warehouse_id;
+    }
+
+    public Integer getWarehouse_supplier() {
+        return warehouse_supplier;
+    }
+
+    public void setWarehouse_supplier(Integer warehouse_supplier) {
+        this.warehouse_supplier = warehouse_supplier;
     }
 
     public BigDecimal getCos_ratio() {
@@ -521,5 +605,13 @@ public class Order {
 
     public void setAlliance_info(AllianceInfo alliance_info) {
         this.alliance_info = alliance_info;
+    }
+
+    public Integer getFinal_status() {
+        return final_status;
+    }
+
+    public void setFinal_status(Integer final_status) {
+        this.final_status = final_status;
     }
 }

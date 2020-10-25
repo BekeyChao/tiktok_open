@@ -129,6 +129,11 @@ public class ProductAddParameters {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime presell_end_time;
 
+    // 商品创建和编辑操作支持设置质检报告链接,多个图片以逗号分隔
+    private String quality_report;
+    // 商品创建和编辑操作支持设置品类资质链接,多个图片以逗号分隔
+    private String class_quality;
+
     public ProductAddParameters(Product product) {
         this.name = product.getName();
 
@@ -177,6 +182,22 @@ public class ProductAddParameters {
         this.presell_end_time = product.getPresell_end_time();
         this.delivery_delay_day = Objects.toString(product.getDelivery_delay_day(), null) ;
         this.reduce_type = Objects.toString(product.getReduce_type(), null);
+    }
+
+    public String getQuality_report() {
+        return quality_report;
+    }
+
+    public void setQuality_report(String quality_report) {
+        this.quality_report = quality_report;
+    }
+
+    public String getClass_quality() {
+        return class_quality;
+    }
+
+    public void setClass_quality(String class_quality) {
+        this.class_quality = class_quality;
     }
 
     public String getName() {

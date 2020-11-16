@@ -92,7 +92,8 @@ public class TiktokOpen {
                 }
                 return res;
             } catch (Exception e) {
-                logger.error("抖音响应解析失败 msg:{}", response);
+                logger.error("抖音响应解析失败", e);
+                logger.warn("错误响应消息 msg: {}", response);
 //                return request.getResponseType().cast(new ErrorResponse());
 //                T tiktokOpenResponse = new TiktokOpenResponse();
                 throw new TiktokRequestException(-1, "抖音响应解析失败 str:" + response);

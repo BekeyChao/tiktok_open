@@ -1,4 +1,4 @@
-package xyz.bekey;
+package xyz.bekey.tiktokOpen;
 
 import java.util.function.Consumer;
 

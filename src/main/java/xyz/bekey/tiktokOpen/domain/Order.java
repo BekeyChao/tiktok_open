@@ -98,7 +98,7 @@ public class Order {
     private List<CampaignInfo> campaign_info;
 
     // 店铺满减优惠信息(shop_campaign_id：店铺满减活动ID，shop_full_amount：分摊到该子订单上的满减金额，单位：分
-    private Integer shop_full_campaign;
+//    private Integer shop_full_campaign;
     /**
      * 父订单总金额 (单位: 分) 即用户实际支付金额, 不包含运费
      */
@@ -503,13 +503,13 @@ public class Order {
         this.pre_sale_type = pre_sale_type;
     }
 
-    public Integer getShop_full_campaign() {
-        return shop_full_campaign;
-    }
-
-    public void setShop_full_campaign(Integer shop_full_campaign) {
-        this.shop_full_campaign = shop_full_campaign;
-    }
+//    public Integer getShop_full_campaign() {
+//        return shop_full_campaign;
+//    }
+//
+//    public void setShop_full_campaign(Integer shop_full_campaign) {
+//        this.shop_full_campaign = shop_full_campaign;
+//    }
 
     public Integer getSub_b_type() {
         return sub_b_type;

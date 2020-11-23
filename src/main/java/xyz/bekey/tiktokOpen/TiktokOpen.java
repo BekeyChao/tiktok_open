@@ -6,7 +6,6 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.bekey.ErrNoHandleConfig;
 import xyz.bekey.tiktokOpen.domain.AccessToken;
 import xyz.bekey.tiktokOpen.domain.MsgAuthInfo;
 import xyz.bekey.tiktokOpen.domain.MsgOrderInfo;

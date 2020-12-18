@@ -18,7 +18,8 @@ public class Product {
 
     private String img;
 
-    private Integer settlement_price;
+    // 已废弃
+//    private Integer settlement_price;
     // 0上架 1下架
     private ProductStatus status;
 
@@ -384,14 +385,6 @@ public class Product {
 
     public void setImg(String img) {
         this.img = img;
-    }
-
-    public Integer getSettlement_price() {
-        return settlement_price;
-    }
-
-    public void setSettlement_price(Integer settlement_price) {
-        this.settlement_price = settlement_price;
     }
 
     public CheckStatus getCheck_status() {

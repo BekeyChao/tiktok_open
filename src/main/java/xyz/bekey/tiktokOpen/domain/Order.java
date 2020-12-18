@@ -116,8 +116,6 @@ public class Order {
     private Integer urge_cnt;
     // 订单APP渠道
     private Integer b_type;
-    // 订单来源，如下所示
-    private Integer c_type;
 
     // 订单来源类型
     //0:未知
@@ -135,9 +133,6 @@ public class Order {
     //14	抖+
     //15	穿山甲
     private Integer c_biz;
-
-    // 佣金比例
-    private BigDecimal cos_ratio;
 
     /**
      * child_num 总会与child.size()一致，所以没有什么意义
@@ -479,13 +474,6 @@ public class Order {
         this.b_type = b_type;
     }
 
-    public Integer getC_type() {
-        return c_type;
-    }
-
-    public void setC_type(Integer c_type) {
-        this.c_type = c_type;
-    }
 
     public String getOpen_id() {
         return open_id;
@@ -551,13 +539,6 @@ public class Order {
         this.warehouse_supplier = warehouse_supplier;
     }
 
-    public BigDecimal getCos_ratio() {
-        return cos_ratio;
-    }
-
-    public void setCos_ratio(BigDecimal cos_ratio) {
-        this.cos_ratio = cos_ratio;
-    }
 
     public Long getOut_product_id() {
         return out_product_id;

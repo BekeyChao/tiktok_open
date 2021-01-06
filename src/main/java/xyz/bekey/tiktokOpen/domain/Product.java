@@ -166,6 +166,13 @@ public class Product {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime presell_end_time;
 
+    // 0-普通，3-虚拟，6玉石闪购，7云闪购
+    private Integer product_type;
+
+    private Long freight_id;
+    private String remark;
+    private Integer supply_7day_return;
+
     public String getName() {
         return name;
     }
@@ -457,5 +464,37 @@ public class Product {
 
     public void setReduce_type(Integer reduce_type) {
         this.reduce_type = reduce_type;
+    }
+
+    public Integer getProduct_type() {
+        return product_type;
+    }
+
+    public void setProduct_type(Integer product_type) {
+        this.product_type = product_type;
+    }
+
+    public Long getFreight_id() {
+        return freight_id;
+    }
+
+    public void setFreight_id(Long freight_id) {
+        this.freight_id = freight_id;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Integer getSupply_7day_return() {
+        return supply_7day_return;
+    }
+
+    public void setSupply_7day_return(Integer supply_7day_return) {
+        this.supply_7day_return = supply_7day_return;
     }
 }

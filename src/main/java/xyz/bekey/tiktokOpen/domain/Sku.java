@@ -20,15 +20,19 @@ public class Sku {
 
     private Integer stock_num;
 
+    private Integer step_stock_num;
+
     private Integer price;
 
     private Integer settlement_price;
 
+    private String supplier_id;
+
     private String code;
 
-    private long spec_detail_id1;   //第一级子规格ID（最多三级）
-    private long spec_detail_id2;   //第二级子规格ID
-    private long spec_detail_id3;   //第三级子规格ID（最多三级）
+    private Long spec_detail_id1;   //第一级子规格ID（最多三级）
+    private Long spec_detail_id2;   //第二级子规格ID
+    private Long spec_detail_id3;   //第三级子规格ID（最多三级）
     private String spec_detail_name1;   //第一级子规格名称，比如：黑色
     private String spec_detail_name2;   //第二级子规格名称，比如：大
     private String spec_detail_name3;
@@ -121,27 +125,27 @@ public class Sku {
         this.id = id;
     }
 
-    public long getSpec_detail_id1() {
+    public Long getSpec_detail_id1() {
         return spec_detail_id1;
     }
 
-    public void setSpec_detail_id1(long spec_detail_id1) {
+    public void setSpec_detail_id1(Long spec_detail_id1) {
         this.spec_detail_id1 = spec_detail_id1;
     }
 
-    public long getSpec_detail_id2() {
+    public Long getSpec_detail_id2() {
         return spec_detail_id2;
     }
 
-    public void setSpec_detail_id2(long spec_detail_id2) {
+    public void setSpec_detail_id2(Long spec_detail_id2) {
         this.spec_detail_id2 = spec_detail_id2;
     }
 
-    public long getSpec_detail_id3() {
+    public Long getSpec_detail_id3() {
         return spec_detail_id3;
     }
 
-    public void setSpec_detail_id3(long spec_detail_id3) {
+    public void setSpec_detail_id3(Long spec_detail_id3) {
         this.spec_detail_id3 = spec_detail_id3;
     }
 
@@ -167,5 +171,21 @@ public class Sku {
 
     public void setSpec_detail_name3(String spec_detail_name3) {
         this.spec_detail_name3 = spec_detail_name3;
+    }
+
+    public Integer getStep_stock_num() {
+        return step_stock_num;
+    }
+
+    public void setStep_stock_num(Integer step_stock_num) {
+        this.step_stock_num = step_stock_num;
+    }
+
+    public String getSupplier_id() {
+        return supplier_id;
+    }
+
+    public void setSupplier_id(String supplier_id) {
+        this.supplier_id = supplier_id;
     }
 }

@@ -52,9 +52,7 @@ public class TiktokOpen {
 
         treeMap.put("param_json",
                 jsonStr);
-        if (logger.isInfoEnabled()) {
-            logger.info("抖音开发平台请求 {} {} {}", request.getMethod(), jsonStr, accessToken);
-        }
+
 
         treeMap.put("method", request.getMethod());
         treeMap.put("app_key", tiktokOpenConfig.getAppKey());
@@ -62,6 +60,11 @@ public class TiktokOpen {
         treeMap.put("v", request.getV());
 
         String sign = signStr(treeMap);
+
+        if (logger.isInfoEnabled()) {
+            logger.info("抖音开发平台请求 {} {} {} sign:{}", request.getMethod(), jsonStr, accessToken, sign);
+        }
+
         treeMap.put("sign", sign);
         // access_token 不参与加密
         treeMap.put("access_token", accessToken);
@@ -83,8 +86,9 @@ public class TiktokOpen {
 
             try {
                 T res = JSON.parseObject(response, request.getResponseType());
-                if (res.getErr_no() == 30006 || res.getErr_no() == 11) {
-                    // 用户取消授权
+                if (res.getErr_no() == 30006 || res.getErr_no() == 11
+                    || res.getErr_no() == 30003) {
+                    // 用户取消授权 授权过期等
                     if (errNoHandleConfig.getAuthorize30006Handle() != null) {
                         errNoHandleConfig.getAuthorize30006Handle().accept(accessToken);
                     }

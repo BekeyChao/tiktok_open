@@ -7,6 +7,7 @@ import java.util.Objects;
 public class ProductParameter {
 
     private Long product_id;
+    // product.detail 接口使用 是否显示草稿数据
     private Boolean show_draft;
 
     public ProductParameter(Long productId, Boolean show_draft) {

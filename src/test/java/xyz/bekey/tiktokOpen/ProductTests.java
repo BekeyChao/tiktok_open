@@ -7,9 +7,9 @@ import org.junit.Test;
 import xyz.bekey.tiktokOpen.request.parameters.CidParameter;
 import xyz.bekey.tiktokOpen.request.parameters.ProductParameter;
 import xyz.bekey.tiktokOpen.request.product.ProductDetailRequest;
-import xyz.bekey.tiktokOpen.request.product.ProductGetGoodsCategoryRequest;
+import xyz.bekey.tiktokOpen.request.shop.ShopGetShopCategoryRequest;
 import xyz.bekey.tiktokOpen.response.product.ProductDetailResponse;
-import xyz.bekey.tiktokOpen.response.product.ProductGetGoodsCategoryResponse;
+import xyz.bekey.tiktokOpen.response.shop.ShopGetShopCategoryResponse;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,8 +34,8 @@ public class ProductTests {
     @Test
     public void productGetCategoryTest() {
         CidParameter cidParameter = new CidParameter(0L);
-        ProductGetGoodsCategoryRequest request = new ProductGetGoodsCategoryRequest(cidParameter);
-        ProductGetGoodsCategoryResponse response = client.getTiktokResponse(request, accessToken);
+        ShopGetShopCategoryRequest request = new ShopGetShopCategoryRequest(cidParameter);
+        ShopGetShopCategoryResponse response = client.getTiktokResponse(request, accessToken);
         System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
 
     }

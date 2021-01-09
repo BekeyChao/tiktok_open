@@ -24,7 +24,7 @@ mvn install
 <dependency>
     <groupId>xyz.bekey</groupId>
     <artifactId>tiktokOpen</artifactId>
-    <version>1.1.8</version>
+    <version>1.1.26</version>
 </dependency>
 ```
 
@@ -70,9 +70,9 @@ public class TiktokConfig {
 @Test
 public void productGetCategoryTest() {
     CidParameter cidParameter = new CidParameter(0L);
-    ProductGetGoodsCategoryRequest request = new ProductGetGoodsCategoryRequest(cidParameter);
+    ShopGetShopCategoryRequest request = new ShopGetShopCategoryRequest(cidParameter);
     // accessToken 通过用户授权获得
-    ProductGetGoodsCategoryResponse response = client.getTiktokResponse(request, accessToken);
+    ShopGetShopCategoryResponse response = client.getTiktokResponse(request, accessToken);
     System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
 }
 ```

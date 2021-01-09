@@ -6,7 +6,6 @@ import xyz.bekey.tiktokOpen.domain.Product;
 import xyz.bekey.tiktokOpen.domain.Sku;
 import xyz.bekey.tiktokOpen.domain.Spec;
 import xyz.bekey.tiktokOpen.domain.enums.PayType;
-import xyz.bekey.tiktokOpen.domain.enums.PresellType;
 import xyz.bekey.tiktokOpen.utils.AssertUtils;
 import xyz.bekey.tiktokOpen.utils.CollectionUtils;
 import xyz.bekey.tiktokOpen.utils.Join;
@@ -106,7 +105,7 @@ public class ProductAddV2Parameters {
     /**
      * 可选
      */
-    private PresellType presell_type;
+    private Integer presell_type;
 
     /**
      * 减库存类型：1-拍下减库存 2-付款减库存
@@ -309,7 +308,7 @@ public class ProductAddV2Parameters {
         return brand_id;
     }
 
-    public PresellType getPresell_type() {
+    public Integer getPresell_type() {
         return presell_type;
     }
 

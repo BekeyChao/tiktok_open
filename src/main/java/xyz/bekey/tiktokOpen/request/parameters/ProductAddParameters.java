@@ -3,7 +3,6 @@ package xyz.bekey.tiktokOpen.request.parameters;
 import com.alibaba.fastjson.annotation.JSONField;
 import xyz.bekey.tiktokOpen.domain.Product;
 import xyz.bekey.tiktokOpen.domain.enums.PayType;
-import xyz.bekey.tiktokOpen.domain.enums.PresellType;
 import xyz.bekey.tiktokOpen.utils.Join;
 
 import java.time.LocalDateTime;
@@ -109,7 +108,7 @@ public class ProductAddParameters {
     /**
      * 可选
      */
-    private PresellType presell_type;
+    private Integer presell_type;
 
     private String reduce_type;
 
@@ -280,7 +279,7 @@ public class ProductAddParameters {
         return brand_id;
     }
 
-    public PresellType getPresell_type() {
+    public Integer getPresell_type() {
         return presell_type;
     }
 

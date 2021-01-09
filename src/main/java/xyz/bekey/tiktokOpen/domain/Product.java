@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import xyz.bekey.tiktokOpen.domain.enums.CheckStatus;
 import xyz.bekey.tiktokOpen.domain.enums.PayType;
-import xyz.bekey.tiktokOpen.domain.enums.PresellType;
 import xyz.bekey.tiktokOpen.domain.enums.ProductStatus;
 
 import java.time.LocalDateTime;
@@ -153,7 +152,7 @@ public class Product {
      */
     private Long brand_id;
 
-    private PresellType presell_type;
+    private Integer presell_type;
 
     /**
      * 预售结束后，几天发货，可以选择2-30
@@ -346,11 +345,11 @@ public class Product {
         this.brand_id = brand_id;
     }
 
-    public PresellType getPresell_type() {
+    public Integer getPresell_type() {
         return presell_type;
     }
 
-    public void setPresell_type(PresellType presell_type) {
+    public void setPresell_type(Integer presell_type) {
         this.presell_type = presell_type;
     }
 

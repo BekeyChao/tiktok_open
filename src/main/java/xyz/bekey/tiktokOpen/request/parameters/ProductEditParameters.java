@@ -3,7 +3,6 @@ package xyz.bekey.tiktokOpen.request.parameters;
 import com.alibaba.fastjson.annotation.JSONField;
 import xyz.bekey.tiktokOpen.domain.Product;
 import xyz.bekey.tiktokOpen.domain.enums.PayType;
-import xyz.bekey.tiktokOpen.domain.enums.PresellType;
 import xyz.bekey.tiktokOpen.utils.AssertUtils;
 import xyz.bekey.tiktokOpen.utils.CollectionUtils;
 import xyz.bekey.tiktokOpen.utils.Join;
@@ -75,7 +74,7 @@ public class ProductEditParameters {
     /**
      * 可选
      */
-    private PresellType presell_type;
+    private Integer presell_type;
 
     /**
      * 预售结束后，几天发货，可以选择2-30 可选
@@ -212,7 +211,7 @@ public class ProductEditParameters {
         return commit;
     }
 
-    public PresellType getPresell_type() {
+    public Integer getPresell_type() {
         return presell_type;
     }
 

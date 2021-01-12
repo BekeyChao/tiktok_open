@@ -133,6 +133,8 @@ public class ProductAddParameters {
     // 商品创建和编辑操作支持设置品类资质链接,多个图片以逗号分隔
     private String class_quality;
 
+    private String category_leaf_id;
+
     public ProductAddParameters(Product product) {
         this.name = product.getName();
 
@@ -151,9 +153,10 @@ public class ProductAddParameters {
 
         this.cos_ratio =product.getCos_ratio().toString();
 
-        this.first_cid = product.getFirst_cid().toString();
-        this.second_cid = product.getSecond_cid().toString();
-        this.third_cid = product.getThird_cid().toString();
+//        this.first_cid = product.getFirst_cid().toString();
+//        this.second_cid = product.getSecond_cid().toString();
+//        this.third_cid = product.getThird_cid().toString();
+        this.category_leaf_id = product.getCategory_leaf_id().toString();
 
         this.pay_type = product.getPay_type();
         this.spec_id = product.getSpec_id().toString();
@@ -261,6 +264,10 @@ public class ProductAddParameters {
 
     public String getProduct_format() {
         return product_format;
+    }
+
+    public String getCategory_leaf_id() {
+        return category_leaf_id;
     }
 
     public String getUsp() {

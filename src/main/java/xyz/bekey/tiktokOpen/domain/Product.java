@@ -171,6 +171,101 @@ public class Product {
     private Long freight_id;
     private String remark;
     private Integer supply_7day_return;
+    // 仅作传参使用 叶子类目ID 代替firstCid second_cid thirdCid
+    private Long category_leaf_id;
+
+    private CategoryDetail category_detail;
+
+    public static class CategoryDetail {
+        private Long first_cid; // 一级类目ID
+        private Long second_cid; // 二级类目ID
+        private Long third_cid; // 三级类目ID
+        private Long fourth_cid; // 四级类目ID
+        private String first_name; // 一级类目名称
+        private String second_name; // 二级类目名称
+        private String third_name; // 三级类目名称
+        private String fourth_name; // 四级类目名称
+
+        public Long getFirst_cid() {
+            return first_cid;
+        }
+
+        public void setFirst_cid(Long first_cid) {
+            this.first_cid = first_cid;
+        }
+
+        public Long getSecond_cid() {
+            return second_cid;
+        }
+
+        public void setSecond_cid(Long second_cid) {
+            this.second_cid = second_cid;
+        }
+
+        public Long getThird_cid() {
+            return third_cid;
+        }
+
+        public void setThird_cid(Long third_cid) {
+            this.third_cid = third_cid;
+        }
+
+        public Long getFourth_cid() {
+            return fourth_cid;
+        }
+
+        public void setFourth_cid(Long fourth_cid) {
+            this.fourth_cid = fourth_cid;
+        }
+
+        public String getFirst_name() {
+            return first_name;
+        }
+
+        public void setFirst_name(String first_name) {
+            this.first_name = first_name;
+        }
+
+        public String getSecond_name() {
+            return second_name;
+        }
+
+        public void setSecond_name(String second_name) {
+            this.second_name = second_name;
+        }
+
+        public String getThird_name() {
+            return third_name;
+        }
+
+        public void setThird_name(String third_name) {
+            this.third_name = third_name;
+        }
+
+        public String getFourth_name() {
+            return fourth_name;
+        }
+
+        public void setFourth_name(String fourth_name) {
+            this.fourth_name = fourth_name;
+        }
+    }
+
+    public Long getCategory_leaf_id() {
+        return category_leaf_id;
+    }
+
+    public void setCategory_leaf_id(Long category_leaf_id) {
+        this.category_leaf_id = category_leaf_id;
+    }
+
+    public CategoryDetail getCategory_detail() {
+        return category_detail;
+    }
+
+    public void setCategory_detail(CategoryDetail category_detail) {
+        this.category_detail = category_detail;
+    }
 
     public String getName() {
         return name;

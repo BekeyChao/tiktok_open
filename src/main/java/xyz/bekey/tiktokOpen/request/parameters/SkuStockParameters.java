@@ -18,11 +18,11 @@ public class SkuStockParameters {
 
     private Long sku_id;
 
-    private Integer stock_num;
+    private int stock_num;
 
     private Integer step_stock_num;
 
-    public SkuStockParameters(Long skuId, int stock_num, boolean incremental, Long idempotent_id) {
+    public SkuStockParameters(Long skuId, int stock_num, Boolean incremental, Long idempotent_id) {
         AssertUtils.isTrue(stock_num >= 0, "库存数量不能小于0");
         AssertUtils.notNull(skuId, "sku id not be null");
         this.incremental = incremental;
@@ -31,13 +31,13 @@ public class SkuStockParameters {
         this.stock_num = stock_num;
     }
 
-    public SkuStockParameters(Long skuId, int stock_num, int step_stock_num, boolean incremental, Long idempotent_id) {
+    public SkuStockParameters(Long skuId, int stock_num, Integer step_stock_num, Boolean incremental, Long idempotent_id) {
         this(skuId, stock_num, incremental, idempotent_id);
-        AssertUtils.isTrue(step_stock_num >= 0, "阶梯库存数量不能小于0");
+        AssertUtils.isTrue(step_stock_num == null || step_stock_num >= 0, "阶梯库存数量不能小于0");
         this.step_stock_num = step_stock_num;
     }
 
-    public SkuStockParameters(Long skuId, int stock_num, int step_stock_num, boolean incremental, Long idempotent_id,
+    public SkuStockParameters(Long skuId, int stock_num, Integer step_stock_num, Boolean incremental, Long idempotent_id,
                               Long out_warehouse_id, Long supplier_id) {
         this(skuId, stock_num, step_stock_num, incremental, idempotent_id);
         this.out_warehouse_id = out_warehouse_id;
@@ -69,7 +69,7 @@ public class SkuStockParameters {
     }
 
     public String getStock_num() {
-        return stock_num.toString();
+        return stock_num + "";
     }
 }
 

@@ -105,7 +105,7 @@ public class ProductAddV2Parameters {
     /**
      * 可选
      */
-    private Integer presell_type;
+    private String presell_type;
 
     /**
      * 减库存类型：1-拍下减库存 2-付款减库存
@@ -162,9 +162,12 @@ public class ProductAddV2Parameters {
         this.out_product_id = Objects.toString(product.getOut_product_id(), null);
         this.market_price = product.getMarket_price().toString();
         this.discount_price = product.getDiscount_price().toString();
-        this.first_cid = product.getFirst_cid().toString();
-        this.second_cid = product.getSecond_cid().toString();
-        this.third_cid = product.getThird_cid().toString();
+
+//        this.first_cid = product.getFirst_cid().toString();
+//        this.second_cid = product.getSecond_cid().toString();
+//        this.third_cid = product.getThird_cid().toString();
+        this.category_leaf_id = product.getCategory_leaf_id().toString();
+
         this.pay_type = product.getPay_type();
         if (product.getSpec_pic() != null
                 && product.getSpec_pic().size() > 0) {
@@ -177,7 +180,7 @@ public class ProductAddV2Parameters {
         this.product_format = Join.kvJoin(product.getProduct_format());
         this.recommend_remark = product.getRecommend_remark();
         this.brand_id = Objects.toString(product.getBrand_id(), null);
-        this.presell_type = product.getPresell_type();
+        this.presell_type = Objects.toString(product.getPresell_type(), null);
         this.presell_delay = Objects.toString(product.getPresell_delay(), null);
         this.presell_end_time = product.getPresell_end_time();
         this.delivery_delay_day = Objects.toString(product.getDelivery_delay_day(), null) ;
@@ -308,7 +311,7 @@ public class ProductAddV2Parameters {
         return brand_id;
     }
 
-    public Integer getPresell_type() {
+    public String getPresell_type() {
         return presell_type;
     }
 

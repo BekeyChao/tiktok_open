@@ -89,24 +89,6 @@ public class Product {
      */
     private Integer cos_ratio;
 
-    /**
-     * 一级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private Long first_cid;
-
-    /**
-     * 二级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private Long second_cid;
-
-    /**
-     * 三级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private Long third_cid;
-
     private PayType pay_type;
 
     /**
@@ -321,30 +303,6 @@ public class Product {
 
     public void setCos_ratio(Integer cos_ratio) {
         this.cos_ratio = cos_ratio;
-    }
-
-    public Long getFirst_cid() {
-        return first_cid;
-    }
-
-    public void setFirst_cid(Long first_cid) {
-        this.first_cid = first_cid;
-    }
-
-    public Long getSecond_cid() {
-        return second_cid;
-    }
-
-    public void setSecond_cid(Long second_cid) {
-        this.second_cid = second_cid;
-    }
-
-    public Long getThird_cid() {
-        return third_cid;
-    }
-
-    public void setThird_cid(Long third_cid) {
-        this.third_cid = third_cid;
     }
 
     public PayType getPay_type() {

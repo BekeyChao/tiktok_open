@@ -42,24 +42,6 @@ public class ProductAddParameters {
      */
     private String cos_ratio;
 
-    /**
-     * 一级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private String first_cid;
-
-    /**
-     * 二级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private String second_cid;
-
-    /**
-     * 三级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private String third_cid;
-
     private PayType pay_type;
 
     /**
@@ -228,18 +210,6 @@ public class ProductAddParameters {
 
     public String getCos_ratio() {
         return cos_ratio;
-    }
-
-    public String getFirst_cid() {
-        return first_cid;
-    }
-
-    public String getSecond_cid() {
-        return second_cid;
-    }
-
-    public String getThird_cid() {
-        return third_cid;
     }
 
     public PayType getPay_type() {

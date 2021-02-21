@@ -45,24 +45,6 @@ public class ProductAddV2Parameters {
      */
     private String discount_price;
 
-    /**
-     * 一级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private String first_cid;
-
-    /**
-     * 二级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private String second_cid;
-
-    /**
-     * 三级分类id
-     * (三个分类级别请确保从属正确)
-     */
-    private String third_cid;
-
     private PayType pay_type;
 
     private String spec_pic;
@@ -257,18 +239,6 @@ public class ProductAddV2Parameters {
 
     public String getDiscount_price() {
         return discount_price;
-    }
-
-    public String getFirst_cid() {
-        return first_cid;
-    }
-
-    public String getSecond_cid() {
-        return second_cid;
-    }
-
-    public String getThird_cid() {
-        return third_cid;
     }
 
     public PayType getPay_type() {

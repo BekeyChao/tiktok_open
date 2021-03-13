@@ -1,6 +1,5 @@
 package xyz.bekey.tiktokOpen.domain;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class Order {
@@ -137,7 +136,7 @@ public class Order {
     /**
      * child_num 总会与child.size()一致，所以没有什么意义
      */
-    private Integer child_num;
+//    private Integer child_num;
 
     // 仓库ID
     private Integer warehouse_id;
@@ -145,6 +144,22 @@ public class Order {
     private Integer out_warehouse_id;
     // 供应商ID
     private Integer warehouse_supplier;
+
+    private Integer shipped_num;
+
+    // 是否有退货运费险
+    private String is_insurance;
+
+    // 插旗信息
+    private Integer seller_remark_stars;
+
+    public Integer getShipped_num() {
+        return shipped_num;
+    }
+
+    public void setShipped_num(Integer shipped_num) {
+        this.shipped_num = shipped_num;
+    }
 
     public String getOrder_id() {
         return order_id;
@@ -554,14 +569,6 @@ public class Order {
 
     public void setOut_sku_id(Long out_sku_id) {
         this.out_sku_id = out_sku_id;
-    }
-
-    public Integer getChild_num() {
-        return child_num;
-    }
-
-    public void setChild_num(Integer child_num) {
-        this.child_num = child_num;
     }
 
     public Integer getOrder_total_amount() {

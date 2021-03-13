@@ -34,24 +34,6 @@ public class ProductEditParameters {
     private String description;
 
     /**
-     * 一级分类id 可选
-     * (三个分类级别请确保从属正确)
-     */
-    private String first_cid;
-
-    /**
-     * 二级分类id 可选
-     * (三个分类级别请确保从属正确)
-     */
-    private String second_cid;
-
-    /**
-     * 三级分类id 可选
-     * (三个分类级别请确保从属正确)
-     */
-    private String third_cid;
-
-    /**
      * 可选
      */
     private PayType pay_type;
@@ -120,11 +102,11 @@ public class ProductEditParameters {
                     .collect(Join.VERTICAL);
         }
 
-        if (product.getFirst_cid() != null) {
-            this.first_cid = product.getFirst_cid().toString();
-            this.second_cid = product.getSecond_cid().toString();
-            this.third_cid = product.getThird_cid().toString();
-        }
+//        if (product.getFirst_cid() != null) {
+//            this.first_cid = product.getFirst_cid().toString();
+//            this.second_cid = product.getSecond_cid().toString();
+//            this.third_cid = product.getThird_cid().toString();
+//        }
 
 
         this.pay_type = product.getPay_type();
@@ -177,18 +159,6 @@ public class ProductEditParameters {
 
     public String getDescription() {
         return description;
-    }
-
-    public String getFirst_cid() {
-        return first_cid;
-    }
-
-    public String getSecond_cid() {
-        return second_cid;
-    }
-
-    public String getThird_cid() {
-        return third_cid;
     }
 
     public PayType getPay_type() {

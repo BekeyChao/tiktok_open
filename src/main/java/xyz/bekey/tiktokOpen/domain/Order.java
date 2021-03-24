@@ -153,6 +153,22 @@ public class Order {
     // 插旗信息
     private Integer seller_remark_stars;
 
+    public String getIs_insurance() {
+        return is_insurance;
+    }
+
+    public void setIs_insurance(String is_insurance) {
+        this.is_insurance = is_insurance;
+    }
+
+    public Integer getSeller_remark_stars() {
+        return seller_remark_stars;
+    }
+
+    public void setSeller_remark_stars(Integer seller_remark_stars) {
+        this.seller_remark_stars = seller_remark_stars;
+    }
+
     public Integer getShipped_num() {
         return shipped_num;
     }

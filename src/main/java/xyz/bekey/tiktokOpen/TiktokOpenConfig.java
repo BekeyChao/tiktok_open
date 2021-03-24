@@ -13,6 +13,7 @@ public class TiktokOpenConfig {
      */
     private int socketTimeout = 10000;
     private int connectTimeout = 10000;
+    private int maxRetry = 1;
 
     public String getAppKey() {
         return appKey;
@@ -52,5 +53,13 @@ public class TiktokOpenConfig {
 
     public void setHost(String host) {
         this.host = host;
+    }
+
+    public int getMaxRetry() {
+        return maxRetry;
+    }
+
+    public void setMaxRetry(int maxRetry) {
+        this.maxRetry = maxRetry;
     }
 }

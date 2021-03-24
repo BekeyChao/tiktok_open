@@ -43,7 +43,11 @@ public class TiktokOpen {
     }
 
     public <S, T extends TiktokOpenResponse<?>> T getTiktokResponse(TiktokOpenRequest<S, T> request, String accessToken) {
+        return getTiktokResponse(request, accessToken, 0);
+    }
 
+    private <S, T extends TiktokOpenResponse<?>> T getTiktokResponse(TiktokOpenRequest<S, T> request, String accessToken,
+                                                                     int retry) {
         String jsonStr = JSON.toJSONString(request.getData(), SerializerFeature.MapSortField, SerializerFeature.WriteEnumUsingToString);
         // 不可包含特殊字符 & = ｜ ^ +
         AssertUtils.isTrue(!jsonStr.contains("&"), "不可包含特殊字符 & ");
@@ -52,7 +56,6 @@ public class TiktokOpen {
 
         treeMap.put("param_json",
                 jsonStr);
-
 
         treeMap.put("method", request.getMethod());
         treeMap.put("app_key", tiktokOpenConfig.getAppKey());
@@ -87,7 +90,7 @@ public class TiktokOpen {
             try {
                 T res = JSON.parseObject(response, request.getResponseType());
                 if (res.getErr_no() == 30006 || res.getErr_no() == 11
-                    || res.getErr_no() == 30003) {
+                        || res.getErr_no() == 30003) {
                     // 用户取消授权 授权过期等
                     if (errNoHandleConfig.getAuthorize30006Handle() != null) {
                         errNoHandleConfig.getAuthorize30006Handle().accept(accessToken);
@@ -97,9 +100,16 @@ public class TiktokOpen {
             } catch (Exception e) {
                 logger.error("抖音响应解析失败", e);
                 logger.warn("错误响应消息 msg: {}", response);
-//                return request.getResponseType().cast(new ErrorResponse());
-//                T tiktokOpenResponse = new TiktokOpenResponse();
-                throw new TiktokRequestException(-1, "抖音响应解析失败 str:" + response);
+                if (retry < tiktokOpenConfig.getMaxRetry()) {
+                    try {
+                        Thread.sleep(1000L);
+                    } catch (InterruptedException ex) {
+                        logger.error("InterruptedException", e);
+                        return null;
+                    }
+                    return getTiktokResponse(request, accessToken, retry + 1);
+                }
+                throw new TiktokRequestException(-1, "抖音响应解析失败");
             }
         }
 
@@ -123,6 +133,7 @@ public class TiktokOpen {
 
     /**
      * 服务市场消息回调解密方法
+     *
      * @param sSrc 秘文
      * @return
      */
@@ -138,7 +149,7 @@ public class TiktokOpen {
         TiktokMarketMessage message = new TiktokMarketMessage();
         message.setMsgType(msgType);
         message.setMessage(decrypt);
-        if ( msgType == 1) {
+        if (msgType == 1) {
             // msg_type=1，msg中存储的是支付成功相关信息
             MsgOrderInfo info = JSON.parseObject(msg, MsgOrderInfo.class);
             message.setMsgOrderInfo(info);

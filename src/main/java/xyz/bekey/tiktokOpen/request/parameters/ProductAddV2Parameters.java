@@ -34,6 +34,7 @@ public class ProductAddV2Parameters {
      * 外部商品id,接入方的商品id (需为数字字符串, max = int64)
      */
     private String out_product_id;
+    private String outer_product_id;
 
     /**
      * 市场价，单位分
@@ -165,7 +166,7 @@ public class ProductAddV2Parameters {
         this.presell_type = Objects.toString(product.getPresell_type(), null);
         this.presell_delay = Objects.toString(product.getPresell_delay(), null);
         this.presell_end_time = product.getPresell_end_time();
-        this.delivery_delay_day = Objects.toString(product.getDelivery_delay_day(), null) ;
+        this.delivery_delay_day = Objects.toString(product.getDelivery_delay_day(), null);
         this.reduce_type = Objects.toString(product.getReduce_type(), null);
 
         //
@@ -182,7 +183,7 @@ public class ProductAddV2Parameters {
         List<Spec> specBeans = spec.getSpecs();
         AssertUtils.isTrue(specBeans.size() <= 3, "单次最多三组规格");
 
-        String specs = specBeans.stream().map( child -> {
+        String specs = specBeans.stream().map(child -> {
             if (CollectionUtils.isPresent(child.getValues())) {
                 return child.getName() + "|" +
                         child.getValues().stream()
@@ -194,6 +195,8 @@ public class ProductAddV2Parameters {
         this.specs = specs;
 
         this.spec_prices = JSON.toJSONString(skus);
+        this.outer_product_id =
+                Objects.toString(product.getOut_product_id(), product.getOuter_product_id());
 
     }
 
@@ -335,5 +338,12 @@ public class ProductAddV2Parameters {
 
     public String getSpec_prices() {
         return spec_prices;
+    }
+
+    public String getOuter_product_id() {
+        if (getOut_product_id() != null) {
+            return getOut_product_id();
+        }
+        return outer_product_id;
     }
 }

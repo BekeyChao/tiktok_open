@@ -73,6 +73,7 @@ public class Product {
      * 外部商品id,接入方的商品id (需为数字字符串, max = int64)
      */
     private Long out_product_id;
+    private String outer_product_id;
 
     /**
      * 市场价，单位分
@@ -235,6 +236,14 @@ public class Product {
 
     public Long getCategory_leaf_id() {
         return category_leaf_id;
+    }
+
+    public String getOuter_product_id() {
+        return outer_product_id;
+    }
+
+    public void setOuter_product_id(String outer_product_id) {
+        this.outer_product_id = outer_product_id;
     }
 
     public void setCategory_leaf_id(Long category_leaf_id) {

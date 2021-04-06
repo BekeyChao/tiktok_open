@@ -150,6 +150,8 @@ public class Order {
     // 是否有退货运费险
     private String is_insurance;
 
+    private List<String> item_ids;
+
     // 插旗信息
     private Integer seller_remark_stars;
 
@@ -617,5 +619,13 @@ public class Order {
 
     public void setFinal_status(Integer final_status) {
         this.final_status = final_status;
+    }
+
+    public List<String> getItem_ids() {
+        return item_ids;
+    }
+
+    public void setItem_ids(List<String> item_ids) {
+        this.item_ids = item_ids;
     }
 }

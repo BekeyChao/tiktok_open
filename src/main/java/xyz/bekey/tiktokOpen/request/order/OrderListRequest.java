@@ -8,6 +8,7 @@ public class OrderListRequest extends TiktokOpenRequest<OrderListParameters, Ord
 
     public OrderListRequest(OrderListParameters parameter) {
         super(parameter);
+        setLogLevel(0);
     }
 
     @Override
@@ -21,8 +22,8 @@ public class OrderListRequest extends TiktokOpenRequest<OrderListParameters, Ord
     }
 
     // 不输出 info 太长
-    @Override
-    public boolean infoEnabled() {
-        return false;
-    }
+//    @Override
+//    public boolean infoEnabled() {
+//        return false;
+//    }
 }

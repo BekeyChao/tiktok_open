@@ -8,6 +8,7 @@ public class RefundOrderListRequest extends TiktokOpenRequest<OrderListParameter
 
     public RefundOrderListRequest(OrderListParameters parameter) {
         super(parameter);
+        setLogLevel(0);
     }
 
     @Override
@@ -21,9 +22,9 @@ public class RefundOrderListRequest extends TiktokOpenRequest<OrderListParameter
     }
 
     // 不输出 info 太长
-    @Override
-    public boolean infoEnabled() {
-        return false;
-    }
+//    @Override
+//    public boolean infoEnabled() {
+//        return false;
+//    }
 
 }

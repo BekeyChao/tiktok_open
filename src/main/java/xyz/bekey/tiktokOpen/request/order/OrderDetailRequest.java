@@ -8,6 +8,7 @@ public class OrderDetailRequest extends TiktokOpenRequest<OrderIdParameter, Orde
 
     public OrderDetailRequest(OrderIdParameter parameter) {
         super(parameter);
+        setLogLevel(0);
     }
 
     @Override
@@ -21,8 +22,8 @@ public class OrderDetailRequest extends TiktokOpenRequest<OrderIdParameter, Orde
     }
 
     // 长年累月数据量很大 根据需求调整
-    @Override
-    public boolean infoEnabled() {
-        return false;
-    }
+//    @Override
+//    public boolean infoEnabled() {
+//        return false;
+//    }
 }

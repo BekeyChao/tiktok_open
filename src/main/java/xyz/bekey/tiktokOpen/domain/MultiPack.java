@@ -66,7 +66,7 @@ public class MultiPack {
              */
 
             private String shipped_order_id;
-            private String shipped_num;
+            private Integer shipped_num;
             private List<String> shipped_item_ids;
 
             public String getShipped_order_id() {
@@ -77,11 +77,11 @@ public class MultiPack {
                 this.shipped_order_id = shipped_order_id;
             }
 
-            public String getShipped_num() {
+            public Integer getShipped_num() {
                 return shipped_num;
             }
 
-            public void setShipped_num(String shipped_num) {
+            public void setShipped_num(Integer shipped_num) {
                 this.shipped_num = shipped_num;
             }
 

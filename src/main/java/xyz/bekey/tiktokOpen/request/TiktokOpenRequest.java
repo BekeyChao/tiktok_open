@@ -4,10 +4,11 @@ import xyz.bekey.tiktokOpen.response.TiktokOpenResponse;
 
 /**
  * 抖音小店接口 请求接口 抽象类
+ *
  * @param <P> 参数类型
  * @param <T> 响应类型
  */
-public abstract class TiktokOpenRequest<P ,T extends TiktokOpenResponse<?>> {
+public abstract class TiktokOpenRequest<P, T extends TiktokOpenResponse<?>> {
 
     public TiktokOpenRequest(P parameter) {
         setData(parameter);
@@ -15,6 +16,9 @@ public abstract class TiktokOpenRequest<P ,T extends TiktokOpenResponse<?>> {
 
     // 代表参数
     private P data;
+
+    // 0 不输出  1 输出trace 2 输出debug 3 info 4
+    private int logLevel = 4;
 
     public P getData() {
         return this.data;
@@ -26,12 +30,14 @@ public abstract class TiktokOpenRequest<P ,T extends TiktokOpenResponse<?>> {
 
     /**
      * 提供响应类型，方便反序列化
+     *
      * @return class type
      */
     public abstract Class<T> getResponseType();
 
     /**
      * 提供接口方法名称，不是请求方法
+     *
      * @return method
      */
     public String getMethod() {
@@ -41,12 +47,14 @@ public abstract class TiktokOpenRequest<P ,T extends TiktokOpenResponse<?>> {
 
     /**
      * 请求地址
+     *
      * @return path
      */
     public abstract String getContentPath();
 
     /**
      * 默认v=2
+     *
      * @return v
      */
     public String getV() {
@@ -55,11 +63,15 @@ public abstract class TiktokOpenRequest<P ,T extends TiktokOpenResponse<?>> {
 
     // 是否输出 log.info
     public boolean infoEnabled() {
-        return true;
+        return logLevel >= 4;
     }
 
     // 是否输出 log.debug
     public boolean debugEnabled() {
-        return true;
+        return logLevel >= 3;
+    }
+
+    public void setLogLevel(int level) {
+        this.logLevel = level;
     }
 }

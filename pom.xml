@@ -6,7 +6,7 @@
 
     <groupId>xyz.bekey</groupId>
     <artifactId>tiktokOpen</artifactId>
-    <version>1.1.33</version>
+    <version>1.1.35</version>
     <description>抖音开放平台(v2) Java SDK</description>
 
     <build>

@@ -127,21 +127,21 @@ public class Sku {
         this.id = id;
     }
 
-    public String getOuter_product_id() {
-        return outer_product_id;
-    }
+//    public String getOuter_product_id() {
+//        return outer_product_id;
+//    }
 
-    public void setOuter_product_id(String outer_product_id) {
-        this.outer_product_id = outer_product_id;
-    }
-
-    public String getOuter_sku_id() {
-        return outer_sku_id;
-    }
-
-    public void setOuter_sku_id(String outer_sku_id) {
-        this.outer_sku_id = outer_sku_id;
-    }
+//    public void setOuter_product_id(String outer_product_id) {
+//        this.outer_product_id = outer_product_id;
+//    }
+//
+//    public String getOuter_sku_id() {
+//        return outer_sku_id;
+//    }
+//
+//    public void setOuter_sku_id(String outer_sku_id) {
+//        this.outer_sku_id = outer_sku_id;
+//    }
 
     public Long getSpec_detail_id1() {
         return spec_detail_id1;

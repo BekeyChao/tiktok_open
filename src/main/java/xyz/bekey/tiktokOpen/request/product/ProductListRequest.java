@@ -8,6 +8,7 @@ public class ProductListRequest extends TiktokOpenRequest<ProductListParameters,
 
     public ProductListRequest(ProductListParameters parameter) {
         super(parameter);
+        setLogLevel(0);
     }
 
     @Override

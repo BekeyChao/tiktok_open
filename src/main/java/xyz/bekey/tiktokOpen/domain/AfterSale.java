@@ -68,7 +68,9 @@ public class AfterSale {
     private Integer refund_post_amount;
     // 售后标签：七天无理由，极速退等
     private List<String> aftersale_service;
-    private List<String> sku_spec;
+    private List<NameValue> sku_spec;
+    private List<ProductTag> product_tag;
+    private String insurances_tag;
     //    private Integer part_type;
     //操作角色，system：系统、
 //service：平台客服、
@@ -92,6 +94,36 @@ public class AfterSale {
     private String company_name;
     //售后单对应订单类型,1代表商品单，2代表店铺单，0表示历史单（可通过创建时间来判断，即20年11月之后的都是新的数据
     private Integer aftersale_order_type;
+
+    public static class ProductTag {
+        private String tag_detail;
+        private String tag_detail_en;
+        private String tag_link_url;
+
+        public String getTag_detail() {
+            return tag_detail;
+        }
+
+        public void setTag_detail(String tag_detail) {
+            this.tag_detail = tag_detail;
+        }
+
+        public String getTag_detail_en() {
+            return tag_detail_en;
+        }
+
+        public void setTag_detail_en(String tag_detail_en) {
+            this.tag_detail_en = tag_detail_en;
+        }
+
+        public String getTag_link_url() {
+            return tag_link_url;
+        }
+
+        public void setTag_link_url(String tag_link_url) {
+            this.tag_link_url = tag_link_url;
+        }
+    }
 
     public Long getOrder_id() {
         return order_id;
@@ -333,12 +365,28 @@ public class AfterSale {
         this.aftersale_service = aftersale_service;
     }
 
-    public List<String> getSku_spec() {
+    public List<NameValue> getSku_spec() {
         return sku_spec;
     }
 
-    public void setSku_spec(List<String> sku_spec) {
+    public void setSku_spec(List<NameValue> sku_spec) {
         this.sku_spec = sku_spec;
+    }
+
+    public List<ProductTag> getProduct_tag() {
+        return product_tag;
+    }
+
+    public void setProduct_tag(List<ProductTag> product_tag) {
+        this.product_tag = product_tag;
+    }
+
+    public String getInsurances_tag() {
+        return insurances_tag;
+    }
+
+    public void setInsurances_tag(String insurances_tag) {
+        this.insurances_tag = insurances_tag;
     }
 
     public String getRole() {

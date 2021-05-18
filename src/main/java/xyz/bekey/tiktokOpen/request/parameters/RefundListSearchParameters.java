@@ -1,5 +1,7 @@
 package xyz.bekey.tiktokOpen.request.parameters;
 
+import java.util.Objects;
+
 public class RefundListSearchParameters {
     private Long order_id;
     private Integer page;
@@ -64,8 +66,8 @@ public class RefundListSearchParameters {
     //物流单号
     private String logistics_code;
 
-    public Long getOrder_id() {
-        return order_id;
+    public String getOrder_id() {
+        return Objects.toString(order_id, null);
     }
 
     public void setOrder_id(Long order_id) {

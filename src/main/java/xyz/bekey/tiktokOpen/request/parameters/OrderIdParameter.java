@@ -12,6 +12,10 @@ public class OrderIdParameter {
         this.order_id = order_id;
     }
 
+    public OrderIdParameter(Long order_id) {
+        this.order_id = order_id + "";
+    }
+
     public String getOrder_id() {
         return order_id;
     }

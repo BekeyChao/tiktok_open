@@ -10,7 +10,9 @@ public class Address {
 
     private Addr town;
 
-    public static class  Addr {
+    private Addr street;
+
+    public static class Addr {
         private Long id;
         private String name;
 
@@ -61,5 +63,13 @@ public class Address {
 
     public void setTown(Addr town) {
         this.town = town;
+    }
+
+    public Addr getStreet() {
+        return street;
+    }
+
+    public void setStreet(Addr street) {
+        this.street = street;
     }
 }

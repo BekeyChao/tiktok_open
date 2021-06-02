@@ -18,7 +18,7 @@ public class OrderListRequest extends TiktokOpenRequest<OrderListParameters, Ord
 
     @Override
     public String getContentPath() {
-        return "/order/list";
+        return "/order/searchList";
     }
 
     // 不输出 info 太长

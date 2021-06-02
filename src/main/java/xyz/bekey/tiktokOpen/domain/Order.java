@@ -155,6 +155,18 @@ public class Order {
     // 插旗信息
     private Integer seller_remark_stars;
 
+    // 售后类型，售后退货退款0  售后退款1  售前退款2  换货3
+    private Integer after_sale_type;
+
+    // 订单完成时间
+    private Long finish_time;
+
+    private Integer after_sale_status;
+
+    private String out_skuid;
+
+    private String logistics_company;
+
     public String getIs_insurance() {
         return is_insurance;
     }
@@ -627,5 +639,45 @@ public class Order {
 
     public void setItem_ids(List<String> item_ids) {
         this.item_ids = item_ids;
+    }
+
+    public Long getFinish_time() {
+        return finish_time;
+    }
+
+    public void setFinish_time(Long finish_time) {
+        this.finish_time = finish_time;
+    }
+
+    public Integer getAfter_sale_type() {
+        return after_sale_type;
+    }
+
+    public void setAfter_sale_type(Integer after_sale_type) {
+        this.after_sale_type = after_sale_type;
+    }
+
+    public Integer getAfter_sale_status() {
+        return after_sale_status;
+    }
+
+    public void setAfter_sale_status(Integer after_sale_status) {
+        this.after_sale_status = after_sale_status;
+    }
+
+    public String getOut_skuid() {
+        return out_skuid;
+    }
+
+    public void setOut_skuid(String out_skuid) {
+        this.out_skuid = out_skuid;
+    }
+
+    public String getLogistics_company() {
+        return logistics_company;
+    }
+
+    public void setLogistics_company(String logistics_company) {
+        this.logistics_company = logistics_company;
     }
 }

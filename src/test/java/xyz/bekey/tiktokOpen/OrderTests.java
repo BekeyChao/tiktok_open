@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.junit.Before;
 import org.junit.Test;
+import xyz.bekey.tiktokOpen.domain.ShopOrder;
 import xyz.bekey.tiktokOpen.domain.enums.OrderStatus;
+import xyz.bekey.tiktokOpen.domain.enums.SortBy;
 import xyz.bekey.tiktokOpen.request.order.LogisticsCompanyListRequest;
 import xyz.bekey.tiktokOpen.request.order.OrderDetailRequest;
 import xyz.bekey.tiktokOpen.request.order.OrderListRequest;
@@ -15,6 +17,9 @@ import xyz.bekey.tiktokOpen.response.order.OrderDetailResponse;
 import xyz.bekey.tiktokOpen.response.order.OrderListResponse;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OrderTests {
 
@@ -29,24 +34,53 @@ public class OrderTests {
         config.setAppsercet(AppInfo.appSecret);
         config.setAppKey(AppInfo.appKey);
         TiktokOpen open = new TiktokOpen(config);
+        open.setErrNoHandleConfig(new ErrNoHandleConfig());
         this.client = open;
         this.accessToken = AppInfo.accessToken;
     }
 
-    @Test
-    public void orderList() {
-        OrderStatus orderStatus = OrderStatus.Done;
-        OrderListParameters parameters = new OrderListParameters();
-        parameters.setOrder_status(orderStatus);
-//        parameters.setStart_time(LocalDateTime.now().minusDays(30));
-        parameters.setSize(10);
+//    @Test
+//    public void orderList() {
+////        OrderStatus orderStatus = OrderStatus.Done;
+//        OrderListParameters parameters = new OrderListParameters();
+////        parameters.setOrder_status(orderStatus);
+////        parameters.setStart_time(LocalDateTime.now().minusDays(30));
+//        parameters.setIs_desc(SortBy.ASC);
+//        parameters.setStart_time(LocalDateTime.now().minusDays(3));
+//        parameters.setPage(0);
+//        parameters.setSize(10);
+//
+//        OrderListRequest request = new OrderListRequest(parameters);
+//        OrderListResponse response = client.getTiktokResponse(request, accessToken);
+//
+//        System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
+//    }
 
+    @Test
+    public void shopOrderList(){
+
+        Integer page = 0;
+        Integer size = 20;
+        OrderListParameters parameters = new OrderListParameters();
+        parameters.setPage(page);
+        parameters.setSize(size);
+        parameters.setCreate_time_start(LocalDateTime.now().minusDays(3));
+        parameters.setUpdate_time_start(LocalDateTime.now().minusDays(3));
         OrderListRequest request = new OrderListRequest(parameters);
         OrderListResponse response = client.getTiktokResponse(request, accessToken);
 
-        System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
+        System.out.println(JSON.toJSONString(response.getContents(), SerializerFeature.PrettyFormat));
 
     }
+
+    @Test
+    public void shopOrderDetail() {
+        OrderIdParameter parameter = new OrderIdParameter("4802535265350798809");
+        OrderDetailRequest request = new OrderDetailRequest(parameter);
+        OrderDetailResponse res = client.getTiktokResponse(request, accessToken);
+        System.out.println(JSON.toJSONString(res.getContents(), SerializerFeature.PrettyFormat));
+    }
+
 
     @Test
     public void orderDetail() {

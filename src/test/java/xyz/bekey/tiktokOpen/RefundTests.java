@@ -25,13 +25,13 @@ public class RefundTests {
         this.accessToken = AppInfo.accessToken;
     }
 
-    @Test
-    public void refundOrderList() {
-        OrderListParameters parameters = new OrderListParameters();
-        parameters.setType(2);
-        RefundOrderListRequest request = new RefundOrderListRequest(parameters);
-        RefundOrderListResponse response = client.getTiktokResponse(request, accessToken);
-        System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
-    }
+//    @Test
+//    public void refundOrderList() {
+//        OrderListParameters parameters = new OrderListParameters();
+//        parameters.setType(2);
+//        RefundOrderListRequest request = new RefundOrderListRequest(parameters);
+//        RefundOrderListResponse response = client.getTiktokResponse(request, accessToken);
+//        System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
+//    }
 
 }

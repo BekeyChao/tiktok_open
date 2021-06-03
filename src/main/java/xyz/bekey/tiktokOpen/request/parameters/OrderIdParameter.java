@@ -4,7 +4,7 @@ import xyz.bekey.tiktokOpen.utils.AssertUtils;
 
 public class OrderIdParameter {
 
-//    private String order_id;
+    private String order_id;
 //
 //    public OrderIdParameter(String order_id) {
 //        AssertUtils.isTrue(order_id != null
@@ -25,5 +25,12 @@ public class OrderIdParameter {
 
     public String getShop_order_id() {
         return shop_order_id;
+    }
+    public OrderIdParameter(Long order_id) {
+        this.order_id = order_id + "";
+    }
+
+    public String getOrder_id() {
+        return order_id;
     }
 }

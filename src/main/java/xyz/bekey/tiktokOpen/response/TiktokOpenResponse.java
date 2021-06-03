@@ -13,6 +13,8 @@ public abstract class TiktokOpenResponse<T> {
 
     private String message;
 
+    private String log_id;
+
     private T data;
 
     public T getData() {
@@ -42,5 +44,13 @@ public abstract class TiktokOpenResponse<T> {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getLog_id() {
+        return log_id;
+    }
+
+    public void setLog_id(String log_id) {
+        this.log_id = log_id;
     }
 }

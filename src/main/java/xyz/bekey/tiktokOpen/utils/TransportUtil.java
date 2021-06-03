@@ -16,8 +16,7 @@ public class TransportUtil {
      */
     public static List<Order> convertToOrder(List<ShopOrder> shopOrderList) {
 
-        List<Order> orderList = new ArrayList<>();
-        orderList = shopOrderList.stream().map(shopOrder -> {
+        List<Order> orderList = shopOrderList.stream().map(shopOrder -> {
 
             Order order = new Order();
             copySameFields(order, shopOrder);
@@ -92,12 +91,17 @@ public class TransportUtil {
                 subOrder.setSeller_remark_stars(order.getSeller_remark_stars()); // 卖家订单标，取自父订单
                 subOrder.setShop_id(order.getShop_id()); // 店铺id，取自父订单
                 subOrder.setReceipt_time(skuOrder.getLogistics_receipt_time()); // 物流收货时间
-                // 如果售后状态码为0，则final_status用order_status表示，否则用after_sale_status表示
                 Integer afterSaleStatus = skuOrder.getAfter_sale_info().getAfter_sale_status();
                 subOrder.setAfter_sale_status(afterSaleStatus);
-                Integer finalStatus = (afterSaleStatus == 0 ? skuOrder.getOrder_status() : afterSaleStatus);
-                subOrder.setFinal_status(finalStatus); // final_status赋值
                 subOrder.setAfter_sale_type(skuOrder.getAfter_sale_info().getAfter_sale_type()); // 售后类型，主要用以区分换货还是退货
+                // 当发生售后时，final_status固定赋值为20，如果没有发生售后，将main_status赋值给final_status
+                Integer mainStatus = skuOrder.getMain_status();
+                subOrder.setFinal_status(mainStatus);
+                if (mainStatus == 2){
+                    if (afterSaleStatus != 0){
+                        subOrder.setFinal_status(20);
+                    }
+                }
                 subOrder.setCombo_amount(skuOrder.getOrigin_amount()); // 商品售价
                 subOrder.setCombo_num(skuOrder.getItem_num()); //商品数量
                 subOrder.setCoupon_amount(skuOrder.getPromotion_platform_amount()); // 平台优惠券金额

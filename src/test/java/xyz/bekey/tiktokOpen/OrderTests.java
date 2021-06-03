@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.junit.Before;
 import org.junit.Test;
+import xyz.bekey.tiktokOpen.domain.Order;
 import xyz.bekey.tiktokOpen.domain.ShopOrder;
 import xyz.bekey.tiktokOpen.domain.enums.OrderStatus;
 import xyz.bekey.tiktokOpen.domain.enums.SortBy;
@@ -75,10 +76,11 @@ public class OrderTests {
 
     @Test
     public void shopOrderDetail() {
-        OrderIdParameter parameter = new OrderIdParameter("4802535265350798809");
+        OrderIdParameter parameter = new OrderIdParameter("4804032774411726152");
         OrderDetailRequest request = new OrderDetailRequest(parameter);
         OrderDetailResponse res = client.getTiktokResponse(request, accessToken);
-        System.out.println(JSON.toJSONString(res.getContents(), SerializerFeature.PrettyFormat));
+        Order order = res.getContents();
+        System.out.println(JSON.toJSONString(order, SerializerFeature.PrettyFormat));
     }
 
 

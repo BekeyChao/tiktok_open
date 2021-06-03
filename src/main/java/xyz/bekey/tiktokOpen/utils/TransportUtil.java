@@ -27,6 +27,7 @@ public class TransportUtil {
             order.setOrder_total_amount(shopOrder.getPay_amount()); // 实际支付总金额
             order.setC_biz(shopOrder.getBiz()); // 订单业务类型
 
+
             // **********以上为父订单信息适配，以下为子订单信息适配**********
 
             shopOrder.getSku_order_list().stream().map(skuOrder -> {
@@ -92,16 +93,28 @@ public class TransportUtil {
                 subOrder.setShop_id(order.getShop_id()); // 店铺id，取自父订单
                 subOrder.setReceipt_time(skuOrder.getLogistics_receipt_time()); // 物流收货时间
                 Integer afterSaleStatus = skuOrder.getAfter_sale_info().getAfter_sale_status();
-                subOrder.setAfter_sale_status(afterSaleStatus);
                 subOrder.setAfter_sale_type(skuOrder.getAfter_sale_info().getAfter_sale_type()); // 售后类型，主要用以区分换货还是退货
                 // 当发生售后时，final_status固定赋值为20，如果没有发生售后，将main_status赋值给final_status
+                boolean isParent = order.getOrder_id().equals(subOrder.getOrder_id());
+
                 Integer mainStatus = skuOrder.getMain_status();
                 subOrder.setFinal_status(mainStatus);
-                if (mainStatus == 2){
-                    if (afterSaleStatus != 0){
+                if (isParent) {
+                    order.setFinal_status(mainStatus);
+                }
+                subOrder.setAfter_sale_status(afterSaleStatus);
+                if (isParent) {
+                    order.setAfter_sale_status(afterSaleStatus);
+                }
+                if (mainStatus == 2) {
+                    if (afterSaleStatus != 0) {
                         subOrder.setFinal_status(20);
+                        if (isParent) {
+                            order.setFinal_status(20);
+                        }
                     }
                 }
+
                 subOrder.setCombo_amount(skuOrder.getOrigin_amount()); // 商品售价
                 subOrder.setCombo_num(skuOrder.getItem_num()); //商品数量
                 subOrder.setCoupon_amount(skuOrder.getPromotion_platform_amount()); // 平台优惠券金额

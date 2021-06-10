@@ -6,13 +6,8 @@ import xyz.bekey.tiktokOpen.response.PageList;
 import xyz.bekey.tiktokOpen.response.TiktokOpenResponse;
 import xyz.bekey.tiktokOpen.utils.TransportUtil;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static javax.swing.UIManager.get;
 
 public class OrderListResponse extends TiktokOpenResponse<PageList<ShopOrder>> {
 

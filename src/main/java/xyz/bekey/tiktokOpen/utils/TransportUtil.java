@@ -46,22 +46,18 @@ public class TransportUtil {
                 subOrder.setCombo_id(skuOrder.getSku_id()); // skuId
                 subOrder.setSpec_desc(skuOrder.getSpec()); // 商品规格说明
                 Long skuId = skuOrder.getSku_id();
-                List<LogisticsInfo> logisticsInfos = shopOrder.getLogistics_info().stream().filter(logisticsInfo ->
-
-                        logisticsInfo.getProduct_info().stream().filter(productInfo ->
-
-                                productInfo.getSku_id() == skuId
-
-                        ).collect(Collectors.toList()) != null
-
-                ).collect(Collectors.toList());
+                List<LogisticsInfo> logisticsInfos = shopOrder.getLogistics_info().stream()
+                        .filter(logisticsInfo ->
+                                logisticsInfo.getProduct_info().stream().anyMatch(productInfo ->
+                                        productInfo.getSku_id().equals(skuId))
+                        ).collect(Collectors.toList());
 
                 List<String> itemIds = subOrder.getItem_ids();
                 if (itemIds == null) {
                     itemIds = new ArrayList<>();
                 }
                 Integer shippedNum = 0;
-                if (logisticsInfos == null || logisticsInfos.size() == 0) {
+                if (logisticsInfos.size() == 0) {
                     subOrder.setLogistics_code("");
                     subOrder.setLogistics_time(0L);
                     subOrder.setLogistics_id(0);
@@ -107,7 +103,8 @@ public class TransportUtil {
                     order.setAfter_sale_status(afterSaleStatus);
                 }
                 if (mainStatus == 2) {
-                    if (afterSaleStatus != 0) {
+                    if (afterSaleStatus != 0
+                        && afterSaleStatus != 28) {
                         subOrder.setFinal_status(20);
                         if (isParent) {
                             order.setFinal_status(20);

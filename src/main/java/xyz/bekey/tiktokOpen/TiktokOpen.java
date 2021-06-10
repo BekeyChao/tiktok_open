@@ -90,7 +90,8 @@ public class TiktokOpen {
             try {
                 T res = JSON.parseObject(response, request.getResponseType());
                 if (res.getErr_no() > 0) {
-                    logger.warn("调用错误{} 消息:{}", res.getErr_no(), res.getMessage());
+                    logger.warn("调用错误{} 消息:{} log_id:{}", res.getErr_no(), res.getMessage(),
+                            res.getLog_id());
                 }
                 if (res.getErr_no() == 30006 || res.getErr_no() == 30005
                         || res.getErr_no() == 30003 || res.getErr_no() == 30002) {

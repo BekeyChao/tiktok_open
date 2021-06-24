@@ -89,15 +89,27 @@ public class TiktokOpen {
 
             try {
                 T res = JSON.parseObject(response, request.getResponseType());
-                if (res.getErr_no() > 0) {
+                int error = res.getErr_no();
+                if (error > 0) {
                     logger.warn("调用错误{} 消息:{} log_id:{}", res.getErr_no(), res.getMessage(),
                             res.getLog_id());
                 }
-                if (res.getErr_no() == 30006 || res.getErr_no() == 30005
-                        || res.getErr_no() == 30003 || res.getErr_no() == 30002) {
+                if (error == 30006 || error == 30005
+                        || error == 30003 || error == 30002) {
                     // 用户取消授权 授权过期等
                     if (errNoHandleConfig.getAuthorize30006Handle() != null) {
                         errNoHandleConfig.getAuthorize30006Handle().accept(accessToken);
+                    }
+                }
+                if (error >= 3 && error <= 302) {
+                    if (retry < tiktokOpenConfig.getMaxRetry()) {
+                        try {
+                            Thread.sleep(1000L);
+                        } catch (InterruptedException ex) {
+                            logger.error("InterruptedException", ex);
+                            throw new RuntimeException("应用错误");
+                        }
+                        return getTiktokResponse(request, accessToken, retry + 1);
                     }
                 }
                 return res;
@@ -108,7 +120,7 @@ public class TiktokOpen {
                     try {
                         Thread.sleep(1000L);
                     } catch (InterruptedException ex) {
-                        logger.error("InterruptedException", e);
+                        logger.error("InterruptedException", ex);
                         return null;
                     }
                     return getTiktokResponse(request, accessToken, retry + 1);
@@ -117,7 +129,7 @@ public class TiktokOpen {
             }
         }
 
-        return null;
+        throw new TiktokRequestException(999, "响应请求为null");
     }
 
     /**

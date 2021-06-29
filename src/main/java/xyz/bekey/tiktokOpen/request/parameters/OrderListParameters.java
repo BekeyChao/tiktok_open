@@ -8,6 +8,7 @@ import xyz.bekey.tiktokOpen.utils.AssertUtils;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderListParameters {
@@ -108,7 +109,9 @@ public class OrderListParameters {
     public void setCombine_status(OrderStatus order_status) {
         CombineStatus combineStatus = new CombineStatus();
         combineStatus.setOrder_status(order_status.toString());
-        this.combine_status.add(combineStatus);
+        List<CombineStatus> list = new ArrayList<>();
+        list.add(combineStatus);
+        this.combine_status = list;
     }
 
     public void setCombine_status(int order_status) {

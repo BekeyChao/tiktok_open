@@ -95,7 +95,11 @@ public class BaseOrder {
 
     private String post_tel;
 
+    private String encrypt_post_tel;
+
     private String post_receiver;
+
+    private String encrypt_post_receiver;
 
     private Address post_addr;
 
@@ -431,5 +435,21 @@ public class BaseOrder {
 
     public void setPay_type(Integer pay_type) {
         this.pay_type = pay_type;
+    }
+
+    public String getEncrypt_post_tel() {
+        return encrypt_post_tel;
+    }
+
+    public void setEncrypt_post_tel(String encrypt_post_tel) {
+        this.encrypt_post_tel = encrypt_post_tel;
+    }
+
+    public String getEncrypt_post_receiver() {
+        return encrypt_post_receiver;
+    }
+
+    public void setEncrypt_post_receiver(String encrypt_post_receiver) {
+        this.encrypt_post_receiver = encrypt_post_receiver;
     }
 }

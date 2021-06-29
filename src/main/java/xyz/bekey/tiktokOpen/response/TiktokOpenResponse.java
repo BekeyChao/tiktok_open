@@ -17,6 +17,16 @@ public abstract class TiktokOpenResponse<T> {
 
     private T data;
 
+    private String commonParams;
+
+    public String getCommonParams() {
+        return commonParams;
+    }
+
+    public void setCommonParams(String commonParams) {
+        this.commonParams = commonParams;
+    }
+
     public T getData() {
         return data;
     }

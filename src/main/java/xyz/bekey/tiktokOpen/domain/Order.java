@@ -36,6 +36,10 @@ public class Order {
 
     private String post_receiver;
 
+    private String encrypt_post_receiver;
+
+    private String encrypt_post_tel;
+
     private String post_tel;
 
     private String buyer_words;
@@ -679,5 +683,21 @@ public class Order {
 
     public void setLogistics_company(String logistics_company) {
         this.logistics_company = logistics_company;
+    }
+
+    public String getEncrypt_post_receiver() {
+        return encrypt_post_receiver;
+    }
+
+    public void setEncrypt_post_receiver(String encrypt_post_receiver) {
+        this.encrypt_post_receiver = encrypt_post_receiver;
+    }
+
+    public String getEncrypt_post_tel() {
+        return encrypt_post_tel;
+    }
+
+    public void setEncrypt_post_tel(String encrypt_post_tel) {
+        this.encrypt_post_tel = encrypt_post_tel;
     }
 }

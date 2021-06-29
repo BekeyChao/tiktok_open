@@ -5,6 +5,9 @@ import xyz.bekey.tiktokOpen.utils.AssertUtils;
 public class OrderIdParameter {
 
     private String order_id;
+
+    // 密文是否可搜索
+    private Boolean is_searchable;
 //
 //    public OrderIdParameter(String order_id) {
 //        AssertUtils.isTrue(order_id != null
@@ -32,5 +35,13 @@ public class OrderIdParameter {
 
     public String getOrder_id() {
         return order_id;
+    }
+
+    public Boolean getIs_searchable() {
+        return is_searchable;
+    }
+
+    public void setIs_searchable(Boolean is_searchable) {
+        this.is_searchable = is_searchable;
     }
 }

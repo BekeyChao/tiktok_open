@@ -66,6 +66,9 @@ public class OrderListParameters {
 //    private String size;
     private Integer size;
 
+    // 密文是否可搜索
+    private Boolean is_searchable;
+
     public void setProduct(String product) {
         this.product = product;
     }
@@ -229,5 +232,13 @@ public class OrderListParameters {
 
     public Integer getSize() {
         return size;
+    }
+
+    public Boolean getIs_searchable() {
+        return is_searchable;
+    }
+
+    public void setIs_searchable(Boolean is_searchable) {
+        this.is_searchable = is_searchable;
     }
 }

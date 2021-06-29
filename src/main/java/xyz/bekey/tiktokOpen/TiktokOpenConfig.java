@@ -4,6 +4,9 @@ public class TiktokOpenConfig {
 
     private String host = "https://openapi-fxg.jinritemai.com";
 
+    // 测试
+//    private String host = "https://openapi.jinritemai.com";
+
     private String appKey;
 
     private String appsercet;

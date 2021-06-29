@@ -12,6 +12,8 @@ public class Address {
 
     private Addr street;
 
+    private String encrypt_detail;
+
     public static class Addr {
         private Long id;
         private String name;
@@ -71,5 +73,13 @@ public class Address {
 
     public void setStreet(Addr street) {
         this.street = street;
+    }
+
+    public String getEncrypt_detail() {
+        return encrypt_detail;
+    }
+
+    public void setEncrypt_detail(String encrypt_detail) {
+        this.encrypt_detail = encrypt_detail;
     }
 }

@@ -97,6 +97,11 @@ class HttpUtils {
         // 设置请求器的配置
         request.setConfig(requestConfig);
 
+//        request.addHeader("Content-Type", "text/html;charset=utf-8");
+//        request.addHeader("x-use-boe","1");
+//        request.addHeader("x-tt-env","boe_davinci");
+//        request.addHeader("Origin-From","djt_prod");
+
         try {
             HttpResponse response = null;
             try {

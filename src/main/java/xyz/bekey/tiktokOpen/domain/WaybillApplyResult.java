@@ -4,19 +4,9 @@ import java.util.List;
 
 public class WaybillApplyResult {
 
-    private String commonParams;
-
     private List<WaybillInfo> waybill_infos;
 
     private List<WaybillInfo> err_infos;
-
-    public String getCommonParams() {
-        return commonParams;
-    }
-
-    public void setCommonParams(String commonParams) {
-        this.commonParams = commonParams;
-    }
 
     public List<WaybillInfo> getWaybill_infos() {
         return waybill_infos;

@@ -100,9 +100,6 @@ public class TiktokOpen {
                         errNoHandleConfig.getAuthorize30006Handle().accept(accessToken);
                     }
                 }
-                if ("/logistics/waybillApply".equals(request.getContentPath())) {
-                    res.setCommonParams(treeMap.toString());
-                }
                 return res;
             } catch (Exception e) {
                 logger.error("抖音响应解析失败", e);
@@ -129,7 +126,7 @@ public class TiktokOpen {
      * @param sortedMap
      * @return
      */
-    private String signStr(SortedMap<String, String> sortedMap) {
+    public String signStr(SortedMap<String, String> sortedMap) {
         StringBuilder sb = new StringBuilder(tiktokOpenConfig.getAppsercet());
         sortedMap.forEach((key, value) -> {
             sb.append(key).append(value);

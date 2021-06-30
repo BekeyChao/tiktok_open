@@ -5,23 +5,13 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.junit.Before;
 import org.junit.Test;
 import xyz.bekey.tiktokOpen.domain.*;
-import xyz.bekey.tiktokOpen.domain.enums.OrderStatus;
-import xyz.bekey.tiktokOpen.domain.enums.SortBy;
-import xyz.bekey.tiktokOpen.request.order.BatchEncryptRequest;
-import xyz.bekey.tiktokOpen.request.order.LogisticsCompanyListRequest;
-import xyz.bekey.tiktokOpen.request.order.OrderDetailRequest;
-import xyz.bekey.tiktokOpen.request.order.OrderListRequest;
+import xyz.bekey.tiktokOpen.request.order.*;
 import xyz.bekey.tiktokOpen.request.parameters.*;
 import xyz.bekey.tiktokOpen.request.print.*;
-import xyz.bekey.tiktokOpen.response.order.BatchEncryptResponse;
-import xyz.bekey.tiktokOpen.response.order.LogisticsCompanyListResponse;
-import xyz.bekey.tiktokOpen.response.order.OrderDetailResponse;
-import xyz.bekey.tiktokOpen.response.order.OrderListResponse;
+import xyz.bekey.tiktokOpen.response.order.*;
 import xyz.bekey.tiktokOpen.response.print.*;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -79,7 +69,7 @@ public class OrderTests {
 
     @Test
     public void shopOrderDetail() {
-        OrderIdParameter parameter = new OrderIdParameter("4812562403373821641");
+        OrderIdParameter parameter = new OrderIdParameter("4799270329997250121");
         OrderDetailRequest request = new OrderDetailRequest(parameter);
         OrderDetailResponse res = client.getTiktokResponse(request, accessToken);
         Order order = res.getContents();
@@ -108,8 +98,8 @@ public class OrderTests {
     @Test
     public void batchEncrypt() {
         BatchEncryptParameters parameters = new BatchEncryptParameters();
-        List<Encrypt> list = Arrays.asList(new Encrypt("江夏大道31号(华一寄宿学校旁)保利·海上五月花2期", "4812210357787483422", true, 1),
-                new Encrypt("魏爽", "4812210357787483422", true, 2), new Encrypt("13100656623", "4812210357787483422", true, 3));
+        List<Encrypt> list = Arrays.asList(new Encrypt("南岔区兴林小区", "4799297895116734430", true, 1),
+                new Encrypt("任桂荣", "4799297895116734430", true, 2), new Encrypt("18845829005", "4799297895116734430", true, 3));
         parameters.setBatch_encrypt_list(list);
         BatchEncryptRequest request = new BatchEncryptRequest(parameters);
         BatchEncryptResponse res = client.getTiktokResponse(request, accessToken);
@@ -117,7 +107,7 @@ public class OrderTests {
     }
 
     @Test
-    public void testPrint() {
+    public void testNewCreateOrder() {
         // 传入sender相关信息
         LogisticsAddress sAddress = new LogisticsAddress();
         sAddress.setCountry_code("CHN");
@@ -134,18 +124,18 @@ public class OrderTests {
 
         // 传入order相关信息
         NewCreateOrderParameters.OrderInfo orderInfo = new NewCreateOrderParameters.OrderInfo();
-        orderInfo.setOrder_id("4799270329997250121");
+        orderInfo.setOrder_id("4799297895116734430");
         NewCreateOrderParameters.OrderInfo.ReceiverInfo receiverInfo = new NewCreateOrderParameters.OrderInfo.ReceiverInfo();
         LogisticsAddress rAddress = new LogisticsAddress();
         rAddress.setCountry_code("CHN");
-        rAddress.setProvince_name("广东省");
-        rAddress.setCity_name("广州市");
-        rAddress.setDistrict_name("越秀区");
-        rAddress.setDetail_address("世贸服装城");
+        rAddress.setProvince_name("黑龙江省");
+        rAddress.setCity_name("伊春市");
+        rAddress.setDistrict_name("南岔县");
+        rAddress.setDetail_address("#rVNplyruP8nhalM9D0E+1iAz#eZn9a+psuroKK6Fi1+sdyw0KdeLkN+jJm0gqkPysqV4QpiReG5COpOHFwXPUnGt3GfszwWgBqwVrJvMdBi4vwJ82OyxiAkiMhrBGMdkP2nVKzOnsIB04*CgwIARCtHBiqICABKAESPgo8WAgAlHqxd8JdWSQ2H6I4sr0NpVRpZoTXUM38WvgKyztNs2MY81aDC9TGXtZmbrPWfj7lDGCzvdfeJeU4GgA=#1##");
         receiverInfo.setAddress(rAddress);
         LogisticsContact rContact = new LogisticsContact();
-        rContact.setName("方先生");
-        rContact.setMobile("18818818818");
+        rContact.setName("#EVy/yy4c#kkmkJOt2/TgNhRLWx0p6u78JWvVqGrZro50U4vNp+JnhsZzDwtyahe008kCnLA7pbBnXyNcWuTnEw1p6yjRh6WRZa7Q7KR8+eSK/*CgwIARCtHBiqICABKAESPgo8UTZCZBCiSpqQRFevEY2zIMJ3EbELdnKf5cqesVVaLVIESqmrTTwgvFtfBi/wSajahvW++7g3tEeToBy+GgA=#1##");
+        rContact.setMobile("$GuoBRLx1Ywv+5me1RT3TdQ9s6cfBd0ptFDR+/1/+kuc=$3TAG4yL0jUsE6GCpRnXcahqn8vhqZh7UP2vp5V2K2SL+LVM35lX0Kom/EW6TXSz7LaHUN2RK+BxY7k9NvCKLy+VZca9zVWOfWO2gmh4=*CgwIARCtHBiqICABKAESPgo8t1a2EifshOlxIU9cq1RErlU0jKZjpIyzMNiJS+kq5+SeucQifiYBNofzc0eoRLXkEaZz4tT2WZTlHtmiGgA=$1$$");
         receiverInfo.setContact(rContact);
         orderInfo.setReceiver_info(receiverInfo);
         NewCreateOrderParameters.OrderInfo.Item item = new NewCreateOrderParameters.OrderInfo.Item();
@@ -196,8 +186,8 @@ public class OrderTests {
 
     @Test
     public void testTemplate(){
-        TemplateParameter parameter = new TemplateParameter();
-        TemplateRequest request = new TemplateRequest(parameter);
+
+        TemplateRequest request = new TemplateRequest(NoParameters.getInstance());
         TemplateResponse response = client.getTiktokResponse(request, accessToken);
         System.out.println(JSON.toJSONString(response));
     }
@@ -227,5 +217,29 @@ public class OrderTests {
         CustomTemplateRequest request = new CustomTemplateRequest(parameter);
         CustomTemplateResponse response = client.getTiktokResponse(request, accessToken);
         System.out.println(JSON.toJSONString(response));
+    }
+
+    @Test
+    public void testGetShopKey(){
+
+        GetShopKeyRequest request = new GetShopKeyRequest(NoParameters.getInstance());
+        GetShopKeyResponse response = client.getTiktokResponse(request, accessToken);
+        System.out.println(JSON.toJSONString(response));
+    }
+
+    @Test
+    public void testBatchSensitiveOrDecrypt(){
+
+        BatchSenOrDecParameters.CipherInfo cipherInfo = new BatchSenOrDecParameters.CipherInfo();
+        cipherInfo.setAuth_id("4812210357787483422");
+        cipherInfo.setCipher_text("$xnZagfIcafy84mbvohjTHvmX4uAoFpCHclCjJgUadX8=$4I6aijG0MBGPWi920albh5TjMm0f6aBF2YwW7WeHm1x9T4INlKg9lvIQEPECs9I+rEPGrAcoeP3KSBAkpUJsW2luEcR+u0ZZ1E6k0Lk=*CgwIARCtHBiqICABKAESPgo8aDPVvPcR3Fp1110Z2CnzBncJkCZjMi7YdVwiL4g46LUeUIS9zuBlPr9LTyt7AuEs0EQwxirtqesychhiGgA=$1$$");
+        BatchSenOrDecParameters parameters = new BatchSenOrDecParameters();
+        parameters.setCipher_infos(Arrays.asList(cipherInfo));
+        BatchSensitiveRequest request = new BatchSensitiveRequest(parameters);
+        BatchSensitiveResponse response = client.getTiktokResponse(request, accessToken);
+        BatchDecryptRequest batchDecryptRequest = new BatchDecryptRequest(parameters);
+        BatchDecryptResponse tiktokResponse = client.getTiktokResponse(batchDecryptRequest, accessToken);
+        System.out.println(JSON.toJSONString(response));
+        System.out.println(JSON.toJSONString(tiktokResponse));
     }
 }

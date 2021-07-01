@@ -39,7 +39,9 @@ public abstract class TiktokOpenRequest<P, T extends TiktokOpenResponse<?>> {
      * 拥有权限的应用类型
      * @return
      */
-    public abstract boolean orderRequired();
+    public boolean orderRequired() {
+        return false;
+    }
 
     /**
      * 提供接口方法名称，不是请求方法

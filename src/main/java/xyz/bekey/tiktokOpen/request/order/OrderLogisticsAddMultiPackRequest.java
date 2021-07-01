@@ -19,4 +19,9 @@ public class OrderLogisticsAddMultiPackRequest extends TiktokOpenRequest<MultiPa
     public String getContentPath() {
         return "/order/logisticsAddMultiPack";
     }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
 }

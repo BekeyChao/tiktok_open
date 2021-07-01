@@ -1,8 +1,8 @@
-package xyz.bekey.tiktokOpen.request.print;
+package xyz.bekey.tiktokOpen.request.logistics;
 
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
 import xyz.bekey.tiktokOpen.request.parameters.GetOutRangeParameter;
-import xyz.bekey.tiktokOpen.response.print.GetOutRangeResponse;
+import xyz.bekey.tiktokOpen.response.logistics.GetOutRangeResponse;
 
 public class GetOutRangeRequest extends TiktokOpenRequest<GetOutRangeParameter, GetOutRangeResponse> {
 
@@ -19,5 +19,10 @@ public class GetOutRangeRequest extends TiktokOpenRequest<GetOutRangeParameter, 
     @Override
     public String getContentPath() {
         return "/logistics/getOutRange";
+    }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
     }
 }

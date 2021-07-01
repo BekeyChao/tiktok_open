@@ -21,4 +21,9 @@ public class BatchEncryptRequest extends TiktokOpenRequest<BatchEncryptParameter
     public String getContentPath() {
         return "/order/batchEncrypt";
     }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
 }

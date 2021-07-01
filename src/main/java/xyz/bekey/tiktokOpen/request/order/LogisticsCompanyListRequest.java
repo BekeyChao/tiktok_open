@@ -23,4 +23,9 @@ public class LogisticsCompanyListRequest extends TiktokOpenRequest<NoParameters,
     public String getContentPath() {
         return "/order/logisticsCompanyList";
     }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
 }

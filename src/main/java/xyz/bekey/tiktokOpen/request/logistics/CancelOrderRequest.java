@@ -1,8 +1,8 @@
-package xyz.bekey.tiktokOpen.request.print;
+package xyz.bekey.tiktokOpen.request.logistics;
 
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
 import xyz.bekey.tiktokOpen.request.parameters.CancelOrderParameters;
-import xyz.bekey.tiktokOpen.response.print.CancelOrderResponse;
+import xyz.bekey.tiktokOpen.response.logistics.CancelOrderResponse;
 
 public class CancelOrderRequest extends TiktokOpenRequest<CancelOrderParameters, CancelOrderResponse> {
 
@@ -18,5 +18,10 @@ public class CancelOrderRequest extends TiktokOpenRequest<CancelOrderParameters,
     @Override
     public String getContentPath() {
         return "/logistics/cancelOrder";
+    }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
     }
 }

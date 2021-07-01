@@ -1,9 +1,8 @@
-package xyz.bekey.tiktokOpen.request.print;
+package xyz.bekey.tiktokOpen.request.logistics;
 
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
-import xyz.bekey.tiktokOpen.request.parameters.GetShopKeyParameter;
 import xyz.bekey.tiktokOpen.request.parameters.NoParameters;
-import xyz.bekey.tiktokOpen.response.print.GetShopKeyResponse;
+import xyz.bekey.tiktokOpen.response.logistics.GetShopKeyResponse;
 
 public class GetShopKeyRequest extends TiktokOpenRequest<NoParameters, GetShopKeyResponse> {
 
@@ -19,5 +18,10 @@ public class GetShopKeyRequest extends TiktokOpenRequest<NoParameters, GetShopKe
     @Override
     public String getContentPath() {
         return "/logistics/getShopKey";
+    }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
     }
 }

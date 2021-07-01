@@ -19,4 +19,9 @@ public class OrderLogisticsEditRequest extends TiktokOpenRequest<OrderLogisticsA
     public String getContentPath() {
         return "/order/logisticsEdit";
     }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
 }

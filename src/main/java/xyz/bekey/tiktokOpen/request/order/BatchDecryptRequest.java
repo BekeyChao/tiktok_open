@@ -20,4 +20,9 @@ public class BatchDecryptRequest extends TiktokOpenRequest<BatchSenOrDecParamete
     public String getContentPath() {
         return "/order/batchDecrypt";
     }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
 }

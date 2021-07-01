@@ -19,4 +19,9 @@ public class BatchSensitiveRequest extends TiktokOpenRequest<BatchSenOrDecParame
     public String getContentPath() {
         return "/order/batchSensitive";
     }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
 }

@@ -19,4 +19,9 @@ public class OrderAddOrderRemarkRequest extends TiktokOpenRequest<AddOrderRemark
     public String getContentPath() {
         return "/order/addOrderRemark";
     }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
 }

@@ -1,8 +1,8 @@
-package xyz.bekey.tiktokOpen.request.print;
+package xyz.bekey.tiktokOpen.request.logistics;
 
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
 import xyz.bekey.tiktokOpen.request.parameters.NoParameters;
-import xyz.bekey.tiktokOpen.response.print.TemplateResponse;
+import xyz.bekey.tiktokOpen.response.logistics.TemplateResponse;
 
 public class TemplateRequest extends TiktokOpenRequest<NoParameters, TemplateResponse> {
 
@@ -18,5 +18,10 @@ public class TemplateRequest extends TiktokOpenRequest<NoParameters, TemplateRes
     @Override
     public String getContentPath() {
         return "/logistics/templateList";
+    }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
     }
 }

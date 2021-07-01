@@ -13,6 +13,17 @@ public class NewCreateOrderParameters {
 
     private List<OrderInfo> order_infos;
 
+    private Long user_id;
+
+    // 非必须，A店铺有订购关系，B店铺没有订购关系，B取号想要使用A的订购关系时，user_id传B店铺的店铺ID，A店铺自身取号传0即可
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
     public SenderInfo getSender_info() {
         return sender_info;
     }

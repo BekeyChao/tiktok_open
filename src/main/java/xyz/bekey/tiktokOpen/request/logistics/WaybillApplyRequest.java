@@ -1,8 +1,8 @@
-package xyz.bekey.tiktokOpen.request.print;
+package xyz.bekey.tiktokOpen.request.logistics;
 
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
 import xyz.bekey.tiktokOpen.request.parameters.WaybillApplyParameter;
-import xyz.bekey.tiktokOpen.response.print.WaybillApplyResponse;
+import xyz.bekey.tiktokOpen.response.logistics.WaybillApplyResponse;
 
 public class WaybillApplyRequest extends TiktokOpenRequest<WaybillApplyParameter, WaybillApplyResponse> {
 
@@ -18,5 +18,10 @@ public class WaybillApplyRequest extends TiktokOpenRequest<WaybillApplyParameter
     @Override
     public String getContentPath() {
         return "/logistics/waybillApply";
+    }
+
+    @Override
+    public boolean orderRequired() {
+        return true;
     }
 }

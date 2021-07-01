@@ -1,5 +1,7 @@
 package xyz.bekey.tiktokOpen.domain;
 
+import xyz.bekey.tiktokOpen.TiktokOpen;
+
 import java.util.List;
 
 public class WaybillApplyResult {
@@ -7,6 +9,18 @@ public class WaybillApplyResult {
     private List<WaybillInfo> waybill_infos;
 
     private List<WaybillInfo> err_infos;
+
+//    private TiktokOpen client;
+
+    private String params;
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
 
     public List<WaybillInfo> getWaybill_infos() {
         return waybill_infos;

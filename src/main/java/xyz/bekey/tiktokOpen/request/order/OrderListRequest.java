@@ -21,6 +21,11 @@ public class OrderListRequest extends TiktokOpenRequest<OrderListParameters, Ord
         return "/order/searchList";
     }
 
+    @Override
+    public boolean orderRequired() {
+        return true;
+    }
+
     // 不输出 info 太长
 //    @Override
 //    public boolean infoEnabled() {

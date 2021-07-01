@@ -6,14 +6,12 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.bekey.tiktokOpen.domain.AccessToken;
-import xyz.bekey.tiktokOpen.domain.MsgAuthInfo;
-import xyz.bekey.tiktokOpen.domain.MsgOrderInfo;
-import xyz.bekey.tiktokOpen.domain.TiktokMarketMessage;
+import xyz.bekey.tiktokOpen.domain.*;
 import xyz.bekey.tiktokOpen.exceptions.MsgRequestException;
 import xyz.bekey.tiktokOpen.exceptions.TiktokRequestException;
 import xyz.bekey.tiktokOpen.request.TiktokOpenRequest;
 import xyz.bekey.tiktokOpen.response.TiktokOpenResponse;
+import xyz.bekey.tiktokOpen.response.logistics.WaybillApplyResponse;
 import xyz.bekey.tiktokOpen.utils.AesDecryptUtils;
 import xyz.bekey.tiktokOpen.utils.AssertUtils;
 
@@ -95,7 +93,8 @@ public class TiktokOpen {
                             res.getLog_id());
                 }
                 if (error == 30006 || error == 30005
-                        || error == 30003 || error == 30002) {
+                        || error == 30003 || error == 30002
+                        || error == 31006) {
                     // 用户取消授权 授权过期等
                     if (errNoHandleConfig.getAuthorize30006Handle() != null) {
                         errNoHandleConfig.getAuthorize30006Handle().accept(accessToken);
@@ -110,6 +109,13 @@ public class TiktokOpen {
                             throw new RuntimeException("应用错误");
                         }
                         return getTiktokResponse(request, accessToken, retry + 1);
+                    }
+                }
+                if ("/logistics/waybillApply".equals(request.getContentPath())) {
+                    WaybillApplyResponse waybillResponse = (WaybillApplyResponse) (res);
+                    if (waybillResponse.isSuccess()) {
+                        WaybillApplyResult result = waybillResponse.getData();
+                        result.setParams(getParams(request, accessToken));
                     }
                 }
                 return res;
@@ -145,6 +151,29 @@ public class TiktokOpen {
         });
         sb.append(tiktokOpenConfig.getAppsercet());
         return DigestUtils.md5Hex(sb.toString()).toLowerCase();
+    }
+
+    /**
+     * @param request
+     * @param accessToken
+     * @return
+     */
+    private String getParams(TiktokOpenRequest request, String accessToken) {
+
+        StringBuilder sb = new StringBuilder();
+        SortedMap<String, String> treeMap = new TreeMap<>();
+
+        treeMap.put("param_json", "{}");
+        treeMap.put("method", "logistics.getShopKey");
+        treeMap.put("app_key", tiktokOpenConfig.getAppKey());
+        treeMap.put("timestamp", dateTimeFormatter.format(LocalDateTime.now()));
+        treeMap.put("v", request.getV());
+        String sign = signStr(treeMap);
+        treeMap.put("access_token", accessToken);
+        treeMap.forEach((key, value) -> {
+            sb.append(key).append("=").append(value).append("&");
+        });
+        return sb.append("sign=" + sign).toString();
     }
 
     /**
